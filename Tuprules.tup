@@ -1,0 +1,19 @@
+PHOME=/home/tacsko/code/spacecowboy
+CFLAGS+=-Wall -pedantic -Werror -fPIC -std=c++11
+INCLUDE_PATH+=-I$(PHOME)/include
+LIBS=
+LIBPATH=-L$(PHOME)/lib
+LD_PATH=$(PHOME)/lib
+EXTRADEP=
+
+SDLOPT=-I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -L/usr/lib -lSDL -lpthread
+
+CXX=g++
+
+!generate_test = |> cxxtestgen --error-printer -o %o %f |>
+!cpp = |> $(CXX) $(CFLAGS) $(INCLUDE_PATH) $(SDLOPT) %f -c |> %B.o
+!lib = |> $(CXX) $(CFLAGS) $(INCLUDE_PATH) $(SDLOPT) -shared %f -o %o |>
+!link_test = | $(EXTRADEP) |> $(CXX) $(CFLAGS) $(LIBPATH) $(LIBS) %f -o %o |> testFile
+!run_test = | testFile |> LD_LIBRARY_PATH=$(LD_PATH) valgrind --leak-check=full --show-reachable=yes ./testFile |>
+!exe = | $(EXTRADEP) |> $(CXX) $(CFLAGS) $(LIBPATH) $(SDLOPT) $(LIBS) %f -o %o |>
+
