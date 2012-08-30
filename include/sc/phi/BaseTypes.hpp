@@ -1,11 +1,16 @@
 #pragma once
 
+#include <memory>
+
 namespace sc
 {
   namespace phi
   {
-    typedef float Ratio;
+    class Object;
+    class Sector;
+    typedef std::shared_ptr<Object> ObjectRef;
 
+    typedef float Ratio;
     typedef double CoordinateType;
     typedef double Angle;
 

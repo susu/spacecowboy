@@ -1,7 +1,7 @@
 include_rules
 
-LIBS+=-lscphi
-EXTRADEP+=../libscphi.so
+LIBS+=-lscphi -lscevt
+EXTRADEP+=../libscphi.so ../../evt/libscevt.so
 
 : test_*.hpp |> !generate_test |> testFile.cpp
 : foreach *.cpp |> !cpp |>
