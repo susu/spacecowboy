@@ -1,0 +1,10 @@
+include_rules
+
+LIBS+=-lscphi
+EXTRADEP+=../libscphi.so
+
+: test_*.hpp |> !generate_test |> testFile.cpp
+: foreach *.cpp |> !cpp |>
+: testFile.o |> !link_test |>
+: |> !run_test |>
+

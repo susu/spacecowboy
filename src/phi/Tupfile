@@ -1,0 +1,5 @@
+include_rules
+
+: foreach *.cpp |> !cpp |>
+: *.o |> !lib |> libscphi.so
+
