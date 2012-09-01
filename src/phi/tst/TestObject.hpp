@@ -20,6 +20,11 @@ namespace test
         TS_ASSERT_DIFFERS( m_startingPosition, m_physicalModel.coordinate() );
       }
 
+      void assertRotated()
+      {
+        TS_ASSERT_DIFFERS( m_headingAtStart, m_physicalModel.heading() );
+      }
+
       void assertDidNotMove()
       {
         TS_ASSERT_EQUALS( m_startingPosition, m_physicalModel.coordinate() );
@@ -38,6 +43,7 @@ namespace test
 
       sc::phi::Coordinate m_startingPosition;
       bool m_timerUpdateCalled = false;
+      double m_headingAtStart = m_physicalModel.heading();
   };
 }
 
