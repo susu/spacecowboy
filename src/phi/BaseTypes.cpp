@@ -71,3 +71,10 @@ sc::phi::dotproduct( const Coordinate& left, const Coordinate& right )
   return left.x * right.x + left.y * right.y;
 }
 
+
+sc::phi::Coordinate
+sc::phi::project( const Coordinate& left, const Coordinate& right )
+{
+  return right * ( dotproduct( left, right ) / dotproduct( right, right ) );
+}
+

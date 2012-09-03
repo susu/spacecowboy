@@ -30,6 +30,7 @@ namespace sc
     sc::phi::Coordinate operator*( Coordinate left, const double& right );
 
     double dotproduct( const Coordinate& left, const Coordinate& right );
+    sc::phi::Coordinate project( const Coordinate& left, const Coordinate& right );
 
     sc::phi::Coordinate CoordFromPolar( const Angle& angle, const double& length );
 

@@ -22,5 +22,13 @@ class BaseTypesTest : public CxxTest::TestSuite
       TS_ASSERT_EQUALS( dotproduct( a, b ), -7.0 );
     }
 
+    void test_project()
+    {
+      sc::phi::Coordinate a( 2.0, 3.0 );
+      sc::phi::Coordinate b( 10.0, 0.0 );
+
+      TS_ASSERT_EQUALS( project( a, b ), sc::phi::Coordinate( 2.0, 0.0 ) );
+    }
+
 };
 
