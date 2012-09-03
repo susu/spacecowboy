@@ -64,3 +64,10 @@ sc::phi::CoordFromPolar( const Angle& angle, const double& length )
       sin( angle ) * length );
 }
 
+
+double
+sc::phi::dotproduct( const Coordinate& left, const Coordinate& right )
+{
+  return left.x * right.x + left.y * right.y;
+}
+
