@@ -16,6 +16,7 @@ namespace sc
         void timeElapsed( const Ratio& stepRatio );
         virtual ~Object();
 
+        bool isColliding() const;
       protected:
         Model m_physicalModel;
         Sector& m_sector;

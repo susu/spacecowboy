@@ -98,5 +98,16 @@ class HubTest : public CxxTest::TestSuite
       TS_ASSERT( m_handler_1.isCalled() );
       TS_ASSERT( m_handler_2.isCalled() );
     }
+
+
+    void test_hasHandlersFor()
+    {
+      sc::evt::Hub hub;
+      hub.add( m_handler_1 );
+
+      TS_ASSERT( hub.hasHandlerFor( 1 ) );
+      TS_ASSERT( !hub.hasHandlerFor( 2 ) );
+    }
+
 };
 

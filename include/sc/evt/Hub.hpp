@@ -14,6 +14,7 @@ namespace sc
         void dispatchEvent( Event& event );
         virtual ~Hub();
         void add( Handler& handler );
+        bool hasHandlerFor( SlotId slot ) const;
 
       private:
         Registry m_registry;

@@ -1,5 +1,6 @@
 #include <sc/phi/Object.hpp>
 #include <sc/phi/BaseTypes.hpp>
+#include <sc/phi/EventSlots.hpp>
 #include <sc/evt/Hub.hpp>
 
 sc::phi::Object::Object( Sector& sector )
@@ -35,4 +36,12 @@ sc::phi::Object::timeElapsed( const Ratio& stepRatio )
   m_physicalModel.timeElapse( stepRatio );
   timerUpdate( stepRatio );
 }
+
+
+bool
+sc::phi::Object::isColliding() const
+{
+  return hasHandlerFor( slot::COLLISION );
+}
+
 
