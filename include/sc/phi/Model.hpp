@@ -24,10 +24,15 @@ namespace sc
         Angle angularVelocity() const { return m_angularVelocity; }
 
       private:
+        void updateWithModifiers();
+
         Coordinate m_coordinate;
         Coordinate m_speed;
         Angle      m_heading;
         Angle      m_angularVelocity;
+
+        Coordinate m_speedModifier;
+        Angle      m_angularVelocityModifier;
     };
 
   }
