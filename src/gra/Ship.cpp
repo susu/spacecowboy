@@ -13,8 +13,25 @@ sc::gra::Ship::Ship( sc::phi::Sector& sector, sc::gra::Engine& engine )
   : sc::phi::Object( sector )
   , Graphical( engine )
   , m_shipEngine( m_physicalModel, sector, engine, RADIUS )
+  , m_collider( m_physicalModel )
 {
   add( m_shipEngine );
+  add( m_collider );
+}
+
+
+sc::gra::Ship::Ship(
+    sc::phi::Sector& sector,
+    sc::gra::Engine& engine,
+    const sc::phi::Coordinate& coordinate )
+  : sc::phi::Object( sector, coordinate, { 0.0, 0.0 } )
+  , Graphical( engine )
+  , m_shipEngine( m_physicalModel, sector, engine, RADIUS )
+  , m_collider( m_physicalModel )
+
+{
+  add( m_shipEngine );
+  add( m_collider );
 }
 
 
