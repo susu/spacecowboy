@@ -1,6 +1,7 @@
 #include <sc/phi/Object.hpp>
 #include <sc/phi/BaseTypes.hpp>
 #include <sc/phi/EventSlots.hpp>
+#include <sc/phi/CollisionEvent.hpp>
 #include <sc/evt/Hub.hpp>
 
 sc::phi::Object::Object( Sector& sector )
@@ -44,4 +45,22 @@ sc::phi::Object::isColliding() const
   return hasHandlerFor( slot::COLLISION );
 }
 
+
+void
+sc::phi::Object::checkCollision( const std::vector<sc::phi::ObjectRef>& collection )
+{
+  for ( auto& i : collection )
+  {
+    if ( i.get() == this )
+    {
+      continue;
+    }
+
+    if ( collides( m_physicalModel, i->m_physicalModel ) )
+    {
+      CollisionEvent collision( i, i->m_physicalModel );
+      dispatchEvent( collision );
+    }
+  }
+}
 

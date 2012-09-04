@@ -16,10 +16,10 @@ namespace sc
         void tick();
 
         void deletable( Object* object );
-      private:
-        void removeDeletables();
 
-        std::vector<ObjectRef> m_objects;
+      private:
+        std::vector<ObjectRef> m_nonColliders;
+        std::vector<ObjectRef> m_colliders;
         std::set<Object*> m_deletables;
     };
   }

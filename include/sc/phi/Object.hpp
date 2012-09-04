@@ -17,6 +17,8 @@ namespace sc
         virtual ~Object();
 
         bool isColliding() const;
+        void checkCollision( const std::vector<sc::phi::ObjectRef>& collection );
+
       protected:
         Model m_physicalModel;
         Sector& m_sector;

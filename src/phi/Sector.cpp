@@ -4,8 +4,47 @@
 #include <iostream>
 #include <algorithm>
 
+namespace
+{
+  void removeDeletable(
+      std::vector<sc::phi::ObjectRef>& from,
+      const std::set<sc::phi::Object*>& what )
+  {
+    for ( auto& objPtr : what )
+    {
+      auto newEnd( std::remove_if( from.begin(), from.end(),
+            [ &objPtr ]( const sc::phi::ObjectRef& objRef )
+            { return objPtr == objRef.get(); } ) );
+
+       from.erase( newEnd, from.end() );
+    }
+  }
+
+
+  void updateTimeForEach(
+      const std::vector<sc::phi::ObjectRef>& collection,
+      const sc::phi::Ratio& ratio )
+  {
+    for ( auto& i : collection )
+    {
+      i->timeElapsed( ratio );
+    }
+  }
+
+
+  void checkCollisionForEach( const std::vector<sc::phi::ObjectRef>& collection )
+  {
+    for ( auto& i : collection )
+    {
+      i->checkCollision( collection );
+    }
+  }
+
+}
+
 sc::phi::Sector::Sector()
-  : m_objects()
+  : m_nonColliders()
+  , m_colliders()
   , m_deletables()
 {
 }
@@ -14,35 +53,23 @@ sc::phi::Sector::Sector()
 void
 sc::phi::Sector::addObject( const ObjectRef& object )
 {
-  m_objects.push_back( object );
+  object->isColliding() ?
+    m_colliders.push_back( object ) :
+    m_nonColliders.push_back( object );
 }
 
 
 void
 sc::phi::Sector::tick()
 {
-  removeDeletables();
+  checkCollisionForEach( m_colliders );
 
-  for ( auto& i : m_objects )
-  {
-    i->timeElapsed( 0.01 );
-  }
-}
-
-
-void
-sc::phi::Sector::removeDeletables()
-{
-  for ( auto& objPtr : m_deletables )
-  {
-    auto newEnd( std::remove_if( m_objects.begin(), m_objects.end(),
-        [ &objPtr ]( const ObjectRef& objRef )
-        { return objPtr == objRef.get(); } ) );
-
-    m_objects.erase( newEnd, m_objects.end() );
-  }
-
+  removeDeletable( m_nonColliders, m_deletables );
+  removeDeletable( m_colliders, m_deletables );
   m_deletables.clear();
+
+  updateTimeForEach( m_nonColliders, 0.1 );
+  updateTimeForEach( m_colliders, 0.1 );
 }
 
 
