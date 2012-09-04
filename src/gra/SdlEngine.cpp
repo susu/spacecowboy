@@ -10,7 +10,7 @@ sc::gra::SdlEngine::SdlEngine( int x, int y )
   , m_y( y )
 {
 	assert( SDL_Init( SDL_INIT_VIDEO ) == 0 && "Unable to initialize sdl!" );
-	m_screen = SDL_SetVideoMode( x, y, 0, 0 );
+	m_screen = SDL_SetVideoMode( x, y, 32, SDL_HWSURFACE | SDL_DOUBLEBUF );
 }
 
 
@@ -25,7 +25,7 @@ sc::gra::SdlEngine::updateScreen()
 {
   drawBackground();
   drawObjects();
-  SDL_UpdateRect( m_screen, 0, 0, 0, 0 );
+  SDL_Flip( m_screen );
 }
 
 
