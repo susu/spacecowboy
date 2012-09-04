@@ -7,4 +7,5 @@ const sc::evt::SlotId sc::phi::slot::LEFTTHRUSTER = 3;
 const sc::evt::SlotId sc::phi::slot::RIGHTTHRUSTER = 4;
 const sc::evt::SlotId sc::phi::slot::CWTHRUSTER = 5;
 const sc::evt::SlotId sc::phi::slot::CCWTHRUSTER = 6;
+const sc::evt::SlotId sc::phi::slot::COLLISION = 7;
 

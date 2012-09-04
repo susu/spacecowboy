@@ -16,6 +16,7 @@ namespace sc
         static const evt::SlotId RIGHTTHRUSTER;
         static const evt::SlotId CWTHRUSTER;
         static const evt::SlotId CCWTHRUSTER;
+        static const evt::SlotId COLLISION;
     };
   }
 }
