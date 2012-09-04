@@ -75,6 +75,11 @@ sc::phi::dotproduct( const Coordinate& left, const Coordinate& right )
 sc::phi::Coordinate
 sc::phi::project( const Coordinate& left, const Coordinate& right )
 {
+  if ( right == Coordinate( 0.0, 0.0 ) )
+  {
+    return { 0.0, 0.0 };
+  }
+
   return right * ( dotproduct( left, right ) / dotproduct( right, right ) );
 }
 
