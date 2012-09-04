@@ -1,6 +1,8 @@
 #include <sc/phi/Model.hpp>
 #include <sc/phi/BaseTypes.hpp>
 
+#include <cmath>
+
 sc::phi::Model::Model(
     const Coordinate& coordinate,
     const Coordinate& speed,
@@ -48,5 +50,13 @@ void
 sc::phi::Model::push( const Coordinate& force )
 {
   m_speedModifier+=force;
+}
+
+
+bool
+sc::phi::collides( const Model& left, const Model& right )
+{
+  return distance( left.coordinate(), right.coordinate() ) <
+         left.radius() + right.radius();
 }
 

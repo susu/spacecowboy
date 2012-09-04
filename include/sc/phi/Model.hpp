@@ -23,6 +23,7 @@ namespace sc
         Coordinate speed() const { return m_speed; }
         Angle angularVelocity() const { return m_angularVelocity; }
 
+        unsigned int radius() const { return m_radius; }
       private:
         void updateWithModifiers();
 
@@ -33,8 +34,11 @@ namespace sc
 
         Coordinate m_speedModifier;
         Angle      m_angularVelocityModifier;
+
+        unsigned int m_radius = 10.0;
     };
 
+    bool collides( const Model& left, const Model& right );
   }
 }
 

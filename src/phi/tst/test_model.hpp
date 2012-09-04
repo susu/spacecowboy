@@ -63,5 +63,28 @@ class ModelTest : public CxxTest::TestSuite
       TS_ASSERT_EQUALS( m_model->coordinate(), m_model->speed() * m_stepRatio * 2.0 );
     }
 
+
+    void test_models_collide_only_if_circles_overlap()
+    {
+      {
+        sc::phi::Model other(
+            sc::phi::Coordinate( 20.0, 0.0 ),
+            sc::phi::Coordinate( 0.0, 0.0 ),
+            0.0,
+            0.0 );
+
+        TS_ASSERT( !collides( other, *m_model.get() ) );
+      }
+
+      {
+        sc::phi::Model other(
+            sc::phi::Coordinate( 19.0, 0.0 ),
+            sc::phi::Coordinate( 0.0, 0.0 ),
+            0.0,
+            0.0 );
+        TS_ASSERT( collides( other, *m_model.get() ) );
+      }
+    }
+
 };
 
