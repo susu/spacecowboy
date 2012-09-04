@@ -78,3 +78,12 @@ sc::phi::project( const Coordinate& left, const Coordinate& right )
   return right * ( dotproduct( left, right ) / dotproduct( right, right ) );
 }
 
+
+double
+sc::phi::distance( const Coordinate& left, const Coordinate& right )
+{
+  return  sqrt(
+      ( left.x - right.x ) * ( left.x - right.x ) +
+      ( left.y - right.y ) * ( left.y - right.y ) );
+}
+

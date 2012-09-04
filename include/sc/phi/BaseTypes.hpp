@@ -29,6 +29,7 @@ namespace sc
     sc::phi::Coordinate& operator*=( Coordinate& left, const double& right );
     sc::phi::Coordinate operator*( Coordinate left, const double& right );
 
+    double distance( const Coordinate& left, const Coordinate& right );
     double dotproduct( const Coordinate& left, const Coordinate& right );
     sc::phi::Coordinate project( const Coordinate& left, const Coordinate& right );
 
