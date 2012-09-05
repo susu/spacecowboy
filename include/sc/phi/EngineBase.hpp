@@ -25,10 +25,6 @@ namespace sc
         virtual void subscribe( sc::evt::Registry& registry );
 
       private:
-        virtual void pimpBackThruster();
-        virtual void pimpCwThruster();
-        virtual void pimpCcwThruster();
-
         void spinShip( bool clockWiseSpin );
         Model& m_physicalModel;
 

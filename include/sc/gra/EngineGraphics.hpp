@@ -1,6 +1,6 @@
 #pragma once
 
-#include <sc/phi/EngineBase.hpp>
+#include <sc/evt/Handler.hpp>
 #include <sc/gra/ParticleSource.hpp>
 
 namespace sc
@@ -17,21 +17,23 @@ namespace sc
     class Model;
     class Engine;
 
-    class ShipEngine : public phi::Engine
+    class EngineGraphics : public evt::Handler
     {
       public:
-        ShipEngine(
+        EngineGraphics(
             sc::phi::Model& model,
             sc::phi::Sector& sector,
             sc::gra::Engine& graphicalEngine,
             unsigned int radius );
-        virtual ~ShipEngine();
+        virtual ~EngineGraphics();
+
+        void pimpBackThruster( sc::evt::Event& event );
+        void pimpCwThruster( sc::evt::Event& event );
+        void pimpCcwThruster( sc::evt::Event& event );
+
+        virtual void subscribe( sc::evt::Registry& registry );
 
       private:
-        void pimpBackThruster();
-        void pimpCwThruster();
-        void pimpCcwThruster();
-
         sc::phi::Coordinate shipFront() const;
         sc::phi::Coordinate shipBack() const;
         sc::phi::Angle left() const;

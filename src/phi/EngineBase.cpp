@@ -27,7 +27,6 @@ sc::phi::Engine::backThruster( sc::evt::Event& )
   m_physicalModel.push(
       CoordFromPolar( m_physicalModel.heading(), m_thrusterPower )
       );
-  pimpBackThruster();
 }
 
 
@@ -35,7 +34,6 @@ void
 sc::phi::Engine::cwThruster( sc::evt::Event& )
 {
   spinShip( true );
-  pimpCwThruster();
 }
 
 
@@ -43,7 +41,6 @@ void
 sc::phi::Engine::ccwThruster( sc::evt::Event& )
 {
   spinShip( false );
-  pimpCcwThruster();
 }
 
 
@@ -61,23 +58,5 @@ sc::phi::Engine::subscribe( sc::evt::Registry& registry )
   registerMemberFunction( registry, &Engine::cwThruster, slot::CWTHRUSTER );
   registerMemberFunction( registry, &Engine::ccwThruster, slot::CCWTHRUSTER );
 
-}
-
-
-void
-sc::phi::Engine::pimpBackThruster()
-{
-}
-
-
-void
-sc::phi::Engine::pimpCwThruster()
-{
-}
-
-
-void
-sc::phi::Engine::pimpCcwThruster()
-{
 }
 

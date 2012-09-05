@@ -1,16 +1,17 @@
-#include <sc/gra/ShipEngine.hpp>
+#include <sc/gra/EngineGraphics.hpp>
 #include <sc/gra/ParticleSource.hpp>
 #include <sc/gra/Engine.hpp>
-#include <sc/phi/EngineBase.hpp>
 #include <sc/phi/Model.hpp>
 #include <sc/phi/Sector.hpp>
+#include <sc/phi/EventSlots.hpp>
+#include <sc/evt/Handler.hpp>
 
-sc::gra::ShipEngine::ShipEngine(
+sc::gra::EngineGraphics::EngineGraphics(
     sc::phi::Model& model,
     sc::phi::Sector& sector,
     sc::gra::Engine& graphicalEngine,
     const unsigned int shipRadius )
-  : sc::phi::Engine( model, 0.5, 0.05 )
+  : sc::evt::Handler()
   , m_particleSource( sector, graphicalEngine )
   , m_physicalModel( model )
   , m_shipRadius( shipRadius )
@@ -18,13 +19,22 @@ sc::gra::ShipEngine::ShipEngine(
 }
 
 
-sc::gra::ShipEngine::~ShipEngine()
+sc::gra::EngineGraphics::~EngineGraphics()
 {
 }
 
 
 void
-sc::gra::ShipEngine::pimpBackThruster()
+sc::gra::EngineGraphics::subscribe( sc::evt::Registry& registry )
+{
+  registerMemberFunction( registry, &EngineGraphics::pimpBackThruster, phi::slot::BACKTHRUSTER );
+  registerMemberFunction( registry, &EngineGraphics::pimpCwThruster, phi::slot::CWTHRUSTER );
+  registerMemberFunction( registry, &EngineGraphics::pimpCcwThruster, phi::slot::CCWTHRUSTER );
+}
+
+
+void
+sc::gra::EngineGraphics::pimpBackThruster( sc::evt::Event& event )
 {
   m_particleSource.createParticle(
       shipBack(),
@@ -34,7 +44,7 @@ sc::gra::ShipEngine::pimpBackThruster()
 
 
 void
-sc::gra::ShipEngine::pimpCwThruster()
+sc::gra::EngineGraphics::pimpCwThruster( sc::evt::Event& event )
 {
   m_particleSource.createParticle(
       shipFront(),
@@ -49,7 +59,7 @@ sc::gra::ShipEngine::pimpCwThruster()
 
 
 void
-sc::gra::ShipEngine::pimpCcwThruster()
+sc::gra::EngineGraphics::pimpCcwThruster( sc::evt::Event& event )
 {
   m_particleSource.createParticle(
       shipFront(),
@@ -64,14 +74,14 @@ sc::gra::ShipEngine::pimpCcwThruster()
 
 
 sc::phi::Coordinate
-sc::gra::ShipEngine::shipFront() const
+sc::gra::EngineGraphics::shipFront() const
 {
   return m_physicalModel.coordinate() +
     sc::phi::CoordFromPolar( m_physicalModel.heading(), m_shipRadius );
 }
 
 sc::phi::Coordinate
-sc::gra::ShipEngine::shipBack() const
+sc::gra::EngineGraphics::shipBack() const
 {
   return m_physicalModel.coordinate() +
     sc::phi::CoordFromPolar( m_physicalModel.heading(), m_shipRadius ) * -1.0;
@@ -79,13 +89,13 @@ sc::gra::ShipEngine::shipBack() const
 
 
 sc::phi::Angle
-sc::gra::ShipEngine::left() const
+sc::gra::EngineGraphics::left() const
 {
   return m_physicalModel.heading() + 3.14 / 2;
 }
 
 sc::phi::Angle
-sc::gra::ShipEngine::right() const
+sc::gra::EngineGraphics::right() const
 {
   return m_physicalModel.heading() - 3.14 / 2;
 }

@@ -2,8 +2,9 @@
 
 #include <sc/phi/Object.hpp>
 #include <sc/phi/Collider.hpp>
+#include <sc/phi/EngineBase.hpp>
 #include <sc/gra/Graphical.hpp>
-#include <sc/gra/ShipEngine.hpp>
+#include <sc/gra/EngineGraphics.hpp>
 
 namespace sc
 {
@@ -26,7 +27,8 @@ namespace sc
         void draw() const;
 
       private:
-        ShipEngine m_shipEngine;
+        EngineGraphics m_engineGraphics;
+        sc::phi::Engine m_engine;
         sc::phi::Collider m_collider;
     };
 
