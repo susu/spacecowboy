@@ -29,11 +29,6 @@ namespace sc
         virtual void pimpCwThruster();
         virtual void pimpCcwThruster();
 
-        void registerFunction(
-            sc::evt::Registry& registry,
-            void (Engine::*)( sc::evt::Event& ),
-            const sc::evt::SlotId& slot );
-
         void spinShip( bool clockWiseSpin );
         Model& m_physicalModel;
 

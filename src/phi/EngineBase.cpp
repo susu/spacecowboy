@@ -57,22 +57,10 @@ sc::phi::Engine::spinShip( bool clockWise )
 void
 sc::phi::Engine::subscribe( sc::evt::Registry& registry )
 {
-  registerFunction( registry, &Engine::backThruster, slot::BACKTHRUSTER );
-  registerFunction( registry, &Engine::cwThruster, slot::CWTHRUSTER );
-  registerFunction( registry, &Engine::ccwThruster, slot::CCWTHRUSTER );
+  registerMemberFunction( registry, &Engine::backThruster, slot::BACKTHRUSTER );
+  registerMemberFunction( registry, &Engine::cwThruster, slot::CWTHRUSTER );
+  registerMemberFunction( registry, &Engine::ccwThruster, slot::CCWTHRUSTER );
 
-}
-
-
-void
-sc::phi::Engine::registerFunction(
-    sc::evt::Registry& registry,
-    void (Engine::*funptr)( sc::evt::Event& ),
-    const evt::SlotId& slot )
-{
-  std::function< void( Engine*, sc::evt::Event& ) > fun ( funptr );
-  sc::evt::Callback callback( std::bind( fun, this, std::placeholders::_1 ));
-  registry[ slot ].push_back( callback );
 }
 
 
