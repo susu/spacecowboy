@@ -8,12 +8,6 @@
 namespace
 {
   const unsigned int RADIUS( 10.0 );
-  const sc::phi::Coordinate INIT_POSITION( 100.0, 100.0 );
-}
-
-sc::gra::Ship::Ship( sc::phi::Sector& sector, sc::gra::Engine& engine )
-  : Ship( sector, engine, INIT_POSITION )
-{
 }
 
 

@@ -20,7 +20,6 @@ namespace sc
     class Ship : public phi::Object, public Graphical
     {
       public:
-        Ship( sc::phi::Sector& sector, sc::gra::Engine& engine );
         Ship( sc::phi::Sector& sector,
               sc::gra::Engine& engine,
               const sc::phi::Coordinate& coordinate );
