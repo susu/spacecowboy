@@ -6,6 +6,7 @@
 #include <sc/gra/Particle.hpp>
 
 #include <vector>
+#include <cstdlib>
 
 namespace
 {
@@ -167,6 +168,12 @@ namespace
     0xa1b7ff,
     0x9bbcff,
   };
+
+  unsigned int getRandomLessThan( unsigned int max )
+  {
+    return 1 + ( std::rand() * static_cast< double >( --max ) ) / RAND_MAX;
+  }
+
 }
 
 sc::gra::Particle::Particle(
@@ -176,7 +183,7 @@ sc::gra::Particle::Particle(
     const sc::phi::Coordinate& speed )
   : sc::phi::Object( sector, coordinate, speed )
   , Graphical( graphicalEngine )
-  , m_colourIndex( blackBody.size() - 1.0 )
+  , m_colourIndex( getRandomLessThan( blackBody.size() - 1 ) )
 {
 }
 

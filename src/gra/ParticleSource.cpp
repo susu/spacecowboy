@@ -7,9 +7,9 @@
 
 namespace
 {
-  sc::phi::Coordinate getRandomSpeed()
+  sc::phi::Coordinate getRandomSpeed( const double velocity )
   {
-    static const double multiplier( 10.0 );
+    const double multiplier( velocity / 3.0 );
     return sc::phi::Coordinate(
         (std::rand() * multiplier) / RAND_MAX - multiplier / 2.0,
         (std::rand() * multiplier) / RAND_MAX - multiplier / 2.0 );
@@ -30,14 +30,17 @@ sc::gra::ParticleSource::createParticle(
     const sc::phi::Coordinate& baseSpeed,
     const sc::phi::Angle& heading )
 {
-  const static double VELOCITY( 30.0 );
+  const static unsigned char DENSITY( 5 );
+  const static double VELOCITY( 5.0 );
 
-  sc::phi::ObjectRef particle(
-      new Particle( m_sector, m_graphicalEngine,
-                    coord,
-                    baseSpeed + sc::phi::CoordFromPolar( heading, VELOCITY ) + getRandomSpeed() )
-      );
-
-  m_sector.addObject( particle );
+  for ( unsigned char i( 0 ); i < DENSITY; ++i)
+  {
+    sc::phi::ObjectRef particle(
+        new Particle( m_sector, m_graphicalEngine,
+          coord,
+          baseSpeed + sc::phi::CoordFromPolar( heading, VELOCITY ) + getRandomSpeed( VELOCITY ) )
+        );
+    m_sector.addObject( particle );
+  }
 }
 
