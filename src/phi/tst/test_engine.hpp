@@ -2,10 +2,9 @@
 
 #include "sc/phi/BaseTypes.hpp"
 #include "sc/phi/Sector.hpp"
-#include "sc/phi/EngineBase.hpp"
 #include "sc/phi/EventSlots.hpp"
 #include "sc/evt/Event.hpp"
-#include "TestObject.hpp"
+#include "TestObjectFactory.hpp"
 
 
 class EngineTest : public CxxTest::TestSuite
@@ -18,15 +17,10 @@ class EngineTest : public CxxTest::TestSuite
     void test_object_should_start_only_if_thruster_event_arrives()
     {
       sc::phi::Sector sector;
-
+      test::TestObjectFactory objectFactory( sector );
       test::TestObject* testObject(
-          new test::TestObject( sector, m_start_coordinate, m_speed_still ) );
-      sc::phi::ObjectRef object( testObject );
+          objectFactory.createTestShip( m_start_coordinate, m_speed_still ) );
 
-      sc::phi::AccessoryRef engine( new sc::phi::Engine( 1.0, 1.0 ) );
-      object->addAccessory( engine );
-
-      sector.addObject( object );
       sector.tick();
       testObject->assertDidNotMove();
 

@@ -6,7 +6,7 @@
 #include "sc/phi/CollisionEvent.hpp"
 #include "sc/phi/Model.hpp"
 #include "sc/evt/Event.hpp"
-#include "TestObjectWithCollider.hpp"
+#include "TestObjectFactory.hpp"
 
 
 class ColliderTest : public CxxTest::TestSuite
@@ -21,10 +21,10 @@ class ColliderTest : public CxxTest::TestSuite
     void test_collider_should_change_the_speed_of_colliding_object()
     {
       sc::phi::Sector sector;
+      test::TestObjectFactory objectFactory( sector );
 
-      test::TestObjectWithCollider* testObject_1(
-          new test::TestObjectWithCollider( sector, m_start_coordinate, m_speed_still ) );
-      sc::phi::ObjectRef object_1( testObject_1 );
+      test::TestObject* testObject_1(
+          objectFactory.createTestShip( m_start_coordinate, m_speed_still ) );
 
       sc::phi::Model colliderModel(
           m_start_coordinate_2,
@@ -32,24 +32,20 @@ class ColliderTest : public CxxTest::TestSuite
           0.0,
           0.0 );
 
-      sc::phi::CollisionEvent collisionEvent( object_1, colliderModel );
-      object_1->dispatchEvent( collisionEvent );
-      object_1->timeElapsed( 1.0 );
+      sc::phi::CollisionEvent collisionEvent(
+          sc::phi::ObjectRef( nullptr ), colliderModel );
+      testObject_1->dispatchEvent( collisionEvent );
+      testObject_1->timeElapsed( 1.0 );
       testObject_1->assertMoved();
     }
 
     void test_still_object_should_start_moving_after_collision()
     {
       sc::phi::Sector sector;
+      test::TestObjectFactory objectFactory( sector );
 
-      test::TestObjectWithCollider* testObject_1(
-          new test::TestObjectWithCollider( sector, m_start_coordinate, m_speed_still ) );
-      sc::phi::ObjectRef object_1( testObject_1 );
-      sector.addObject( object_1 );
-
-      sc::phi::ObjectRef object_2(
-          new test::TestObjectWithCollider( sector, m_start_coordinate_2, m_speed_moving ) );
-      sector.addObject( object_2 );
+      test::TestObject* testObject_1( objectFactory.createTestShip( m_start_coordinate, m_speed_still ) );
+      objectFactory.createTestShip( m_start_coordinate_2, m_speed_moving );
 
       sector.tick();
       testObject_1->assertMoved();
