@@ -27,7 +27,6 @@ namespace sc
 
       private:
         EngineGraphics m_engineGraphics;
-        sc::phi::Collider m_collider;
     };
 
   }

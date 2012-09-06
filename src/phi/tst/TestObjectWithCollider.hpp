@@ -14,11 +14,8 @@ namespace test
       TestObjectWithCollider( sc::phi::Sector& sector, const sc::phi::Coordinate& coordinate, const sc::phi::Coordinate& speed )
         : TestObject( sector, coordinate, speed )
       {
-        add( m_collider );
+        addAccessory( sc::phi::AccessoryRef( new sc::phi::Collider() ));
       }
-
-    private:
-      sc::phi::Collider m_collider = { m_physicalModel };
   };
 }
 

@@ -18,12 +18,10 @@ sc::gra::Ship::Ship(
   : sc::phi::Object( sector, coordinate, { 0.0, 0.0 } )
   , Graphical( engine )
   , m_engineGraphics( m_physicalModel, sector, engine, RADIUS )
-  , m_collider( m_physicalModel )
-
 {
   addAccessory( sc::phi::AccessoryRef( new sc::phi::Engine( 0.5, 0.05 ) ) );
+  addAccessory( sc::phi::AccessoryRef( new sc::phi::Collider() ) );
   add( m_engineGraphics );
-  add( m_collider );
 }
 
 

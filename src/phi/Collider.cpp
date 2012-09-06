@@ -7,8 +7,8 @@
 
 #include <functional>
 
-sc::phi::Collider::Collider( Model& physicalModel )
-: m_physicalModel( physicalModel )
+sc::phi::Collider::Collider()
+  : Accessory()
 {
 }
 
@@ -22,7 +22,7 @@ void
 sc::phi::Collider::collision( sc::evt::Event& event )
 {
   CollisionEvent& collisionEvent( dynamic_cast<CollisionEvent&>( event ) );
-  m_physicalModel.push( calculateCollisionForce( collisionEvent ) );
+  m_physicalModel->push( calculateCollisionForce( collisionEvent ) );
 }
 
 
@@ -30,11 +30,11 @@ sc::phi::Coordinate
 sc::phi::Collider::calculateCollisionForce( CollisionEvent& event ) const
 {
   Coordinate distanceVector(
-      m_physicalModel.coordinate() * -1.0 +
+      m_physicalModel->coordinate() * -1.0 +
       event.otherCoord() );
 
   return ( project( event.otherSpeed(), distanceVector ) * -1.0 +
-         project( m_physicalModel.speed(), distanceVector ) ) * -1.0;
+         project( m_physicalModel->speed(), distanceVector ) ) * -1.0;
 }
 
 void
