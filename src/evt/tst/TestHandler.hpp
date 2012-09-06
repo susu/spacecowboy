@@ -17,22 +17,14 @@ namespace test
       {
       }
 
-      void handleEvent( const sc::evt::Event& event )
+      void handleEvent( sc::evt::Event& event )
       {
         m_called = true;
       }
 
       void subscribe( sc::evt::Registry& registry )
       {
-        std::function< void( TestHandler*, const sc::evt::Event& ) > fun1(
-            &TestHandler::handleEvent
-            );
-
-        sc::evt::Callback callback(
-            std::bind( fun1, this, std::placeholders::_1 )
-            );
-
-        registry[ m_slot ].push_back( callback );
+        registerMemberFunction( registry, &TestHandler::handleEvent, m_slot );
       }
 
       void assertHandlerNotified( bool notified ) const
