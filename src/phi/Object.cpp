@@ -2,6 +2,7 @@
 #include <sc/phi/BaseTypes.hpp>
 #include <sc/phi/EventSlots.hpp>
 #include <sc/phi/CollisionEvent.hpp>
+#include <sc/phi/Accessory.hpp>
 #include <sc/evt/Hub.hpp>
 
 sc::phi::Object::Object( Sector& sector )
@@ -62,5 +63,14 @@ sc::phi::Object::checkCollision( const std::vector<sc::phi::ObjectRef>& collecti
       dispatchEvent( collision );
     }
   }
+}
+
+
+void
+sc::phi::Object::addAccessory( const AccessoryRef& accessory )
+{
+  m_accessories.push_back( accessory );
+  accessory->initialize( m_physicalModel );
+  add( *accessory );
 }
 

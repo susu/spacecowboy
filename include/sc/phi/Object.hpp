@@ -19,12 +19,16 @@ namespace sc
         bool isColliding() const;
         void checkCollision( const std::vector<sc::phi::ObjectRef>& collection );
 
+        void addAccessory( const AccessoryRef& accessory );
+
       protected:
         Model m_physicalModel;
         Sector& m_sector;
 
       private:
         virtual void timerUpdate( const Ratio& ratio ) {}
+
+        AccessoryContainer m_accessories;
     };
   }
 }

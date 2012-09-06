@@ -1,14 +1,20 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 namespace sc
 {
   namespace phi
   {
     class Object;
-    class Sector;
     typedef std::shared_ptr<Object> ObjectRef;
+
+    class Accessory;
+    typedef std::shared_ptr<Accessory> AccessoryRef;
+    typedef std::vector<AccessoryRef> AccessoryContainer;
+
+    class Sector;
 
     typedef float Ratio;
     typedef double CoordinateType;
