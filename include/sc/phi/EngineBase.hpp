@@ -1,19 +1,16 @@
 #pragma once
 
 #include <sc/evt/BaseTypes.hpp>
-#include <sc/evt/Handler.hpp>
+#include <sc/phi/Accessory.hpp>
 
 namespace sc
 {
   namespace phi
   {
-    class Model;
-
-    class Engine : public evt::Handler
+    class Engine : public Accessory
     {
       public:
-        Engine( Model& physicalModel,
-                const double& backThrustPower,
+        Engine( const double& backThrustPower,
                 const double& spinThrustPower );
 
         virtual ~Engine();
@@ -26,12 +23,10 @@ namespace sc
 
       private:
         void spinShip( bool clockWiseSpin );
-        Model& m_physicalModel;
 
       protected:
         double m_thrusterPower;
         double m_spinThrusterPower;
-
     };
   }
 }

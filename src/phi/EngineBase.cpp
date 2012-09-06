@@ -6,10 +6,9 @@
 #include <functional>
 #include <cassert>
 
-sc::phi::Engine::Engine( Model& physicalModel,
-                         const double& backThrustPower,
+sc::phi::Engine::Engine( const double& backThrustPower,
                          const double& spinThrustPower )
-: m_physicalModel( physicalModel )
+: Accessory()
 , m_thrusterPower( backThrustPower )
 , m_spinThrusterPower( spinThrustPower )
 {
@@ -24,8 +23,8 @@ sc::phi::Engine::~Engine()
 void
 sc::phi::Engine::backThruster( sc::evt::Event& )
 {
-  m_physicalModel.push(
-      CoordFromPolar( m_physicalModel.heading(), m_thrusterPower )
+  m_physicalModel->push(
+      CoordFromPolar( m_physicalModel->heading(), m_thrusterPower )
       );
 }
 
@@ -47,7 +46,7 @@ sc::phi::Engine::ccwThruster( sc::evt::Event& )
 void
 sc::phi::Engine::spinShip( bool clockWise )
 {
-  m_physicalModel.spin( m_spinThrusterPower * ( clockWise ? 1.0 : -1.0 ) );
+  m_physicalModel->spin( m_spinThrusterPower * ( clockWise ? 1.0 : -1.0 ) );
 }
 
 

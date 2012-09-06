@@ -5,7 +5,7 @@
 #include "sc/phi/EngineBase.hpp"
 #include "sc/phi/EventSlots.hpp"
 #include "sc/evt/Event.hpp"
-#include "TestObjectWithEngine.hpp"
+#include "TestObject.hpp"
 
 
 class EngineTest : public CxxTest::TestSuite
@@ -19,9 +19,12 @@ class EngineTest : public CxxTest::TestSuite
     {
       sc::phi::Sector sector;
 
-      test::TestObjectWithEngine* testObject(
-          new test::TestObjectWithEngine( sector, m_start_coordinate, m_speed_still ) );
+      test::TestObject* testObject(
+          new test::TestObject( sector, m_start_coordinate, m_speed_still ) );
       sc::phi::ObjectRef object( testObject );
+
+      sc::phi::AccessoryRef engine( new sc::phi::Engine( 1.0, 1.0 ) );
+      object->addAccessory( engine );
 
       sector.addObject( object );
       sector.tick();
