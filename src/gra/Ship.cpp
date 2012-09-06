@@ -4,6 +4,7 @@
 #include <sc/phi/Object.hpp>
 #include <sc/phi/BaseTypes.hpp>
 #include <sc/phi/EngineBase.hpp>
+#include <sc/phi/Collider.hpp>
 
 namespace
 {
@@ -17,11 +18,10 @@ sc::gra::Ship::Ship(
     const sc::phi::Coordinate& coordinate )
   : sc::phi::Object( sector, coordinate, { 0.0, 0.0 } )
   , Graphical( engine )
-  , m_engineGraphics( m_physicalModel, sector, engine, RADIUS )
 {
   addAccessory( sc::phi::AccessoryRef( new sc::phi::Engine( 0.5, 0.05 ) ) );
   addAccessory( sc::phi::AccessoryRef( new sc::phi::Collider() ) );
-  add( m_engineGraphics );
+  addAccessory( sc::phi::AccessoryRef( new sc::gra::EngineGraphics( sector, engine, RADIUS ) ) );
 }
 
 

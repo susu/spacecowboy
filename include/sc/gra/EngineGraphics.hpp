@@ -1,6 +1,6 @@
 #pragma once
 
-#include <sc/evt/Handler.hpp>
+#include <sc/phi/Accessory.hpp>
 #include <sc/gra/ParticleSource.hpp>
 
 namespace sc
@@ -17,11 +17,10 @@ namespace sc
     class Model;
     class Engine;
 
-    class EngineGraphics : public evt::Handler
+    class EngineGraphics : public phi::Accessory
     {
       public:
         EngineGraphics(
-            sc::phi::Model& model,
             sc::phi::Sector& sector,
             sc::gra::Engine& graphicalEngine,
             unsigned int radius );
@@ -40,7 +39,6 @@ namespace sc
         sc::phi::Angle right() const;
 
         sc::gra::ParticleSource m_particleSource;
-        sc::phi::Model& m_physicalModel;
 
         const unsigned int m_shipRadius;
     };

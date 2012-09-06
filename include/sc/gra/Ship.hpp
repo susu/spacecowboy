@@ -1,10 +1,7 @@
 #pragma once
 
 #include <sc/phi/Object.hpp>
-#include <sc/phi/Collider.hpp>
-#include <sc/phi/EngineBase.hpp>
 #include <sc/gra/Graphical.hpp>
-#include <sc/gra/EngineGraphics.hpp>
 
 namespace sc
 {
@@ -24,9 +21,6 @@ namespace sc
               sc::gra::Engine& engine,
               const sc::phi::Coordinate& coordinate );
         void draw() const;
-
-      private:
-        EngineGraphics m_engineGraphics;
     };
 
   }
