@@ -27,6 +27,6 @@ void
 sc::gra::RocketGraphics::draw() const
 {
   phi::Coordinate heading( phi::CoordFromPolar( m_physicalModel->heading(), 10.0 ) );
-  m_graphicalEngine.drawPoint( m_physicalModel->coordinate(), 10, 0xffff55 );
+  m_graphicalEngine.drawPoint( m_physicalModel->coordinate(), 1, 0xff0000 );
 }
 

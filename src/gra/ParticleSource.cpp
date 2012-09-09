@@ -17,9 +17,10 @@ namespace
 }
 
 
-sc::gra::ParticleSource::ParticleSource( sc::phi::Sector& sector, sc::gra::Engine& engine )
+sc::gra::ParticleSource::ParticleSource( sc::phi::Sector& sector, sc::gra::Engine& engine, unsigned int density )
   : m_sector( sector )
   , m_graphicalEngine( engine )
+  , m_density( density )
 {
 }
 
@@ -30,10 +31,9 @@ sc::gra::ParticleSource::createParticle(
     const sc::phi::Coordinate& baseSpeed,
     const sc::phi::Angle& heading )
 {
-  const static unsigned char DENSITY( 5 );
   const static double VELOCITY( 5.0 );
 
-  for ( unsigned char i( 0 ); i < DENSITY; ++i)
+  for ( unsigned char i( 0 ); i < m_density; ++i)
   {
     sc::phi::ObjectRef particle(
         new Particle( m_sector, m_graphicalEngine,

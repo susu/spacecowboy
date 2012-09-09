@@ -22,7 +22,7 @@ sc::gra::ObjectFactory::createShip( const sc::phi::ObjectProperties& properties 
   sc::phi::AccessoryRef shipGraphics( new sc::gra::ShipGraphics( m_graphicalEngine ) );
   object->addAccessory( shipGraphics );
 
-  sc::phi::AccessoryRef engineGraphics( new sc::gra::EngineGraphics( m_sector, m_graphicalEngine, 10 ) );
+  sc::phi::AccessoryRef engineGraphics( new sc::gra::EngineGraphics( m_sector, m_graphicalEngine, 10, 5 ) );
   object->addAccessory( engineGraphics );
 
   return object;
@@ -37,7 +37,7 @@ sc::gra::ObjectFactory::createRocket( const sc::phi::ObjectProperties& propertie
   sc::phi::AccessoryRef rocketGraphics( new sc::gra::RocketGraphics( m_graphicalEngine ) );
   object->addAccessory( rocketGraphics );
 
-  sc::phi::AccessoryRef engineGraphics( new sc::gra::EngineGraphics( m_sector, m_graphicalEngine, 10 ) );
+  sc::phi::AccessoryRef engineGraphics( new sc::gra::EngineGraphics( m_sector, m_graphicalEngine, 10, 1 ) );
   object->addAccessory( engineGraphics );
 
   return object;

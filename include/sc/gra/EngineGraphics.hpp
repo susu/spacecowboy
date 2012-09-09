@@ -23,7 +23,8 @@ namespace sc
         EngineGraphics(
             sc::phi::Sector& sector,
             sc::gra::Engine& graphicalEngine,
-            unsigned int radius );
+            unsigned int radius,
+            unsigned int particleDensity );
         virtual ~EngineGraphics();
 
         void pimpBackThruster( sc::evt::Event& event );
