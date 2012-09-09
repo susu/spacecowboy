@@ -5,6 +5,7 @@
 #include <sc/phi/EngineBase.hpp>
 #include <sc/phi/Collider.hpp>
 #include <sc/phi/RocketAi.hpp>
+#include <sc/phi/ExplosionBehaviour.hpp>
 #include <sc/phi/Launcher.hpp>
 
 sc::phi::PhysicalObjectFactory::PhysicalObjectFactory( Sector& sector )
@@ -61,7 +62,12 @@ sc::phi::PhysicalObjectFactory::createRocket( const ObjectProperties& properties
 sc::phi::ObjectRef
 sc::phi::PhysicalObjectFactory::createExplosion( const ObjectProperties& properties )
 {
-  return ObjectRef( createWithColliderAndEngine( properties ) );
+  ObjectRef explosion(createWithColliderAndEngine( properties ) );
+
+  sc::phi::AccessoryRef behaviour( new sc::phi::ExplosionBehaviour( explosion.get() ) );
+  explosion->addAccessory( behaviour );
+
+  return explosion;
 }
 
 

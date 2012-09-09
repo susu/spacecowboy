@@ -2,6 +2,7 @@
 #include <sc/gra/EngineGraphics.hpp>
 #include <sc/gra/ShipGraphics.hpp>
 #include <sc/gra/RocketGraphics.hpp>
+#include <sc/gra/ExplosionGraphics.hpp>
 #include <sc/gra/Engine.hpp>
 #include <sc/phi/BaseTypes.hpp>
 #include <sc/phi/Sector.hpp>
@@ -37,8 +38,20 @@ sc::gra::ObjectFactory::createRocket( const sc::phi::ObjectProperties& propertie
   sc::phi::AccessoryRef rocketGraphics( new sc::gra::RocketGraphics( m_graphicalEngine ) );
   object->addAccessory( rocketGraphics );
 
-  sc::phi::AccessoryRef engineGraphics( new sc::gra::EngineGraphics( m_sector, m_graphicalEngine, 10, 1 ) );
+  sc::phi::AccessoryRef engineGraphics( new sc::gra::EngineGraphics( m_sector, m_graphicalEngine, 1, 1 ) );
   object->addAccessory( engineGraphics );
+
+  return object;
+}
+
+
+sc::phi::ObjectRef
+sc::gra::ObjectFactory::createExplosion( const sc::phi::ObjectProperties& properties )
+{
+  phi::ObjectRef object( PhysicalObjectFactory::createExplosion( properties ) );
+
+  sc::phi::AccessoryRef explosionGraphics( new sc::gra::ExplosionGraphics( m_sector, m_graphicalEngine ) );
+  object->addAccessory( explosionGraphics );
 
   return object;
 }

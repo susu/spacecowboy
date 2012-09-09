@@ -22,6 +22,7 @@ namespace sc
 
         virtual phi::ObjectRef createShip( const phi::ObjectProperties& properties );
         virtual phi::ObjectRef createRocket( const phi::ObjectProperties& properties );
+        virtual phi::ObjectRef createExplosion( const phi::ObjectProperties& properties );
 
       protected:
         Engine& m_graphicalEngine;

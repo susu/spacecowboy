@@ -12,7 +12,7 @@ sc::gra::EngineGraphics::EngineGraphics(
     const unsigned int shipRadius,
     unsigned int particleDensity )
   : sc::phi::Accessory()
-  , m_particleSource( sector, graphicalEngine, particleDensity )
+  , m_particleSource( sector, graphicalEngine, particleDensity, 5.0, 0.2 )
   , m_shipRadius( shipRadius )
 {
 }

@@ -7,20 +7,24 @@
 
 namespace
 {
-  sc::phi::Coordinate getRandomSpeed( const double velocity )
+  double getRandom( const double& deviation )
   {
-    const double multiplier( velocity / 3.0 );
-    return sc::phi::Coordinate(
-        (std::rand() * multiplier) / RAND_MAX - multiplier / 2.0,
-        (std::rand() * multiplier) / RAND_MAX - multiplier / 2.0 );
+    return (std::rand() * deviation) / RAND_MAX - deviation / 2.0;
   }
 }
 
 
-sc::gra::ParticleSource::ParticleSource( sc::phi::Sector& sector, sc::gra::Engine& engine, unsigned int density )
+sc::gra::ParticleSource::ParticleSource(
+    sc::phi::Sector& sector,
+    sc::gra::Engine& engine,
+    unsigned int density,
+    const double& velocity,
+    const double& deviation )
   : m_sector( sector )
   , m_graphicalEngine( engine )
   , m_density( density )
+  , m_velocity( velocity )
+  , m_deviation( deviation )
 {
 }
 
@@ -31,14 +35,12 @@ sc::gra::ParticleSource::createParticle(
     const sc::phi::Coordinate& baseSpeed,
     const sc::phi::Angle& heading )
 {
-  const static double VELOCITY( 5.0 );
-
-  for ( unsigned char i( 0 ); i < m_density; ++i)
+  for ( unsigned int i( 0 ); i < m_density; ++i)
   {
     sc::phi::ObjectRef particle(
         new Particle( m_sector, m_graphicalEngine,
           coord,
-          baseSpeed + sc::phi::CoordFromPolar( heading, VELOCITY ) + getRandomSpeed( VELOCITY ) )
+          baseSpeed + sc::phi::CoordFromPolar( heading + getRandom( m_deviation ), m_velocity + getRandom( 2.0 * m_velocity ) ) )
         );
     m_sector.addObject( particle );
   }

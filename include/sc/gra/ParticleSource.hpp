@@ -12,7 +12,12 @@ namespace sc
     class ParticleSource
     {
       public:
-        ParticleSource( sc::phi::Sector& sector, sc::gra::Engine& graphicalEngine, unsigned int density );
+        ParticleSource(
+            sc::phi::Sector& sector,
+            sc::gra::Engine& graphicalEngine,
+            unsigned int density,
+            const double& velocity,
+            const double& deviation );
 
         void createParticle(
             const sc::phi::Coordinate& coord,
@@ -24,6 +29,8 @@ namespace sc
         sc::gra::Engine& m_graphicalEngine;
 
         unsigned int m_density;
+        double m_velocity;
+        double m_deviation;
     };
   }
 }
