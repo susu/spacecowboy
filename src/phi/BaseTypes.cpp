@@ -99,10 +99,11 @@ sc::phi::ObjectProperties::ObjectProperties()
 }
 
 
-sc::phi::ObjectProperties::ObjectProperties( const Coordinate& coord, const Coordinate& speed, const Angle& heading )
+sc::phi::ObjectProperties::ObjectProperties( const Coordinate& coord, const Coordinate& speed, const Angle& heading, const unsigned int radius )
   : coordinate( coord )
   , speed( speed )
   , heading( heading )
+  , radius( radius )
 {
 }
 

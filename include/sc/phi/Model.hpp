@@ -12,7 +12,8 @@ namespace sc
         Model( const Coordinate& m_coordinate,
                const Coordinate& m_speed,
                const Angle&      m_heading,
-               const Angle&      m_angularVelocity );
+               const Angle&      m_angularVelocity,
+               unsigned int      m_radius );
 
         void timeElapse( const Ratio& timeFrameRatio );
         void spin( const double& force );
@@ -35,7 +36,7 @@ namespace sc
         Coordinate m_speedModifier;
         Angle      m_angularVelocityModifier;
 
-        unsigned int m_radius = 10.0;
+        unsigned int m_radius;
     };
 
     bool collides( const Model& left, const Model& right );

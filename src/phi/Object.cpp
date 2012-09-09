@@ -12,7 +12,8 @@ sc::phi::Object::Object( Sector& sector )
   , m_physicalModel( Coordinate( 100.0, 100.0 )
                     ,Coordinate( 0.0, 0.0 )
                     ,0.0
-                    ,0.0 )
+                    ,0.0
+                    ,10.0 )
   , m_sector( sector )
 {
 }
@@ -23,7 +24,8 @@ sc::phi::Object::Object( Sector& sector, const ObjectProperties& properties )
   , m_physicalModel( properties.coordinate
                     ,properties.speed
                     ,properties.heading
-                    ,0.0 )
+                    ,0.0
+                    ,properties.radius )
   , m_sector( sector )
 {
 }

@@ -30,7 +30,8 @@ class ColliderTest : public CxxTest::TestSuite
           m_start_coordinate_2,
           m_speed_moving,
           0.0,
-          0.0 );
+          0.0,
+          10.0 );
 
       sc::phi::CollisionEvent collisionEvent(
           sc::phi::ObjectRef( nullptr ), colliderModel );

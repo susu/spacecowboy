@@ -5,13 +5,15 @@ sc::phi::Model::Model(
     const Coordinate& coordinate,
     const Coordinate& speed,
     const Angle&      heading,
-    const Angle&      angularVelocity )
+    const Angle&      angularVelocity,
+    unsigned int      radius )
   : m_coordinate( coordinate  )
   , m_speed( speed )
   , m_heading( heading )
   , m_angularVelocity( angularVelocity )
   , m_speedModifier( 0.0, 0.0 )
   , m_angularVelocityModifier( 0.0 )
+  , m_radius( radius )
 {
 }
 

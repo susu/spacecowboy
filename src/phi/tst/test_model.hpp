@@ -17,7 +17,8 @@ class ModelTest : public CxxTest::TestSuite
           sc::phi::Coordinate( 0.0, 0.0 ),
           m_startSpeed,
           0.0,
-          m_startAngularVelocity ) );
+          m_startAngularVelocity,
+          10.0 ) );
     }
 
   public:
@@ -71,7 +72,8 @@ class ModelTest : public CxxTest::TestSuite
             sc::phi::Coordinate( 20.0, 0.0 ),
             sc::phi::Coordinate( 0.0, 0.0 ),
             0.0,
-            0.0 );
+            0.0,
+            10.0 );
 
         TS_ASSERT( !collides( other, *m_model.get() ) );
       }
@@ -81,7 +83,8 @@ class ModelTest : public CxxTest::TestSuite
             sc::phi::Coordinate( 19.0, 0.0 ),
             sc::phi::Coordinate( 0.0, 0.0 ),
             0.0,
-            0.0 );
+            0.0,
+            10.0 );
         TS_ASSERT( collides( other, *m_model.get() ) );
       }
     }
