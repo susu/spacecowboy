@@ -1,5 +1,7 @@
 #include <sc/phi/Sector.hpp>
 #include <sc/phi/Object.hpp>
+#include <sc/phi/EventSlots.hpp>
+#include <sc/evt/Event.hpp>
 
 #include <iostream>
 #include <algorithm>
@@ -7,7 +9,7 @@
 namespace
 {
   void removeDeletable(
-      std::vector<sc::phi::ObjectRef>& from,
+      std::list<sc::phi::ObjectRef>& from,
       const std::set<sc::phi::Object*>& what )
   {
     for ( auto& objPtr : what )
@@ -22,17 +24,19 @@ namespace
 
 
   void updateTimeForEach(
-      const std::vector<sc::phi::ObjectRef>& collection,
+      const std::list<sc::phi::ObjectRef>& collection,
       const sc::phi::Ratio& ratio )
   {
+    sc::evt::BinaryEvent event( sc::phi::slot::TIMEELAPSED );
     for ( auto& i : collection )
     {
       i->timeElapsed( ratio );
+      i->dispatchEvent( event );
     }
   }
 
 
-  void checkCollisionForEach( const std::vector<sc::phi::ObjectRef>& collection )
+  void checkCollisionForEach( const std::list<sc::phi::ObjectRef>& collection )
   {
     for ( auto& i : collection )
     {

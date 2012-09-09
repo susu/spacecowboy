@@ -1,8 +1,6 @@
 #include <sc/phi/Model.hpp>
 #include <sc/phi/BaseTypes.hpp>
 
-#include <cmath>
-
 sc::phi::Model::Model(
     const Coordinate& coordinate,
     const Coordinate& speed,

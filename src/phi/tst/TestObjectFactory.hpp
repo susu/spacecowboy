@@ -1,7 +1,7 @@
 #pragma once
 
 #include <sc/phi/BaseTypes.hpp>
-#include <sc/phi/ObjectFactory.hpp>
+#include <sc/phi/PhysicalObjectFactory.hpp>
 #include <sc/phi/EngineBase.hpp>
 #include <sc/phi/Collider.hpp>
 
@@ -10,36 +10,47 @@
 namespace test
 {
 
-  class TestObjectFactory : public sc::phi::ObjectFactory
+  class TestObjectFactory : public sc::phi::PhysicalObjectFactory
   {
     public:
       TestObjectFactory( sc::phi::Sector& sector )
-        : sc::phi::ObjectFactory( sector )
+        : sc::phi::PhysicalObjectFactory( sector )
       {
       }
 
-      test::TestObject* createTestShip(
-          const sc::phi::Coordinate& coord,
-          const sc::phi::Coordinate& speed )
+      test::TestObject* createTestShip( const sc::phi::ObjectProperties& prop )
       {
-        sc::phi::ObjectRef ship( createShip( coord, speed ) );
+        sc::phi::ObjectRef ship( createShip( prop ) );
         return dynamic_cast< test::TestObject* >( ship.get() );
       }
 
-      virtual sc::phi::ObjectRef createShip(
-          const sc::phi::Coordinate& coord,
-          const sc::phi::Coordinate& speed )
+      test::TestObject* createTestRocket( const sc::phi::ObjectProperties& prop )
       {
-        sc::phi::ObjectRef object( new test::TestObject( m_sector, coord, speed ) );
-        sc::phi::AccessoryRef engine( new sc::phi::Engine( 1.0, 1.0 ) );
-        object->addAccessory( engine );
-
-        sc::phi::AccessoryRef collider( new sc::phi::Collider() );
-        object->addAccessory( collider );
-        m_sector.addObject( object );
-
-        return object;
+        sc::phi::ObjectRef rocket( createRocket( prop ) );
+        return dynamic_cast< test::TestObject* >( rocket.get() );
       }
+
+      sc::phi::ObjectRef createRocket( const sc::phi::ObjectProperties& prop )
+      {
+        m_rocketCreated = true;
+        return sc::phi::PhysicalObjectFactory::createRocket( prop );
+      }
+
+      void assertRocketCreated_ResetFlag( bool created )
+      {
+        TS_ASSERT( created ? m_rocketCreated : !m_rocketCreated  );
+        m_rocketCreated = false;
+      }
+
+    protected:
+      virtual sc::phi::ObjectRef createBasicObject( const sc::phi::ObjectProperties& prop )
+      {
+        return sc::phi::ObjectRef( new test::TestObject( m_sector, prop ) );
+      }
+
+    private:
+      bool m_rocketCreated = false;
+
   };
 }
 

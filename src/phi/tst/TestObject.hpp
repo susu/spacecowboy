@@ -9,9 +9,9 @@ namespace test
   class TestObject : public sc::phi::Object
   {
     public:
-      TestObject( sc::phi::Sector& sector, const sc::phi::Coordinate& coordinate, const sc::phi::Coordinate& speed )
-        : sc::phi::Object( sector, coordinate, speed )
-        , m_startingPosition( coordinate )
+      TestObject( sc::phi::Sector& sector, const sc::phi::ObjectProperties& prop )
+        : sc::phi::Object( sector, prop )
+        , m_startingPosition( prop.coordinate )
       {
       }
 

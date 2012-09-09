@@ -19,7 +19,7 @@ class EngineTest : public CxxTest::TestSuite
       sc::phi::Sector sector;
       test::TestObjectFactory objectFactory( sector );
       test::TestObject* testObject(
-          objectFactory.createTestShip( m_start_coordinate, m_speed_still ) );
+          objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still, 0.0 ) ) );
 
       sector.tick();
       testObject->assertDidNotMove();

@@ -5,6 +5,8 @@
 #include <sc/phi/Accessory.hpp>
 #include <sc/evt/Hub.hpp>
 
+#include <cmath>
+
 sc::phi::Object::Object( Sector& sector )
   : evt::Hub()
   , m_physicalModel( Coordinate( 100.0, 100.0 )
@@ -16,11 +18,11 @@ sc::phi::Object::Object( Sector& sector )
 }
 
 
-sc::phi::Object::Object( Sector& sector, const Coordinate& coordinate, const Coordinate& speed )
+sc::phi::Object::Object( Sector& sector, const ObjectProperties& properties )
   : evt::Hub()
-  , m_physicalModel( coordinate
-                    ,speed
-                    ,0.0
+  , m_physicalModel( properties.coordinate
+                    ,properties.speed
+                    ,properties.heading
                     ,0.0 )
   , m_sector( sector )
 {
@@ -48,7 +50,7 @@ sc::phi::Object::isColliding() const
 
 
 void
-sc::phi::Object::checkCollision( const std::vector<sc::phi::ObjectRef>& collection )
+sc::phi::Object::checkCollision( const std::list<sc::phi::ObjectRef>& collection )
 {
   for ( auto& i : collection )
   {

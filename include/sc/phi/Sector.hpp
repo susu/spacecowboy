@@ -1,7 +1,7 @@
 #pragma once
 
 #include <sc/phi/BaseTypes.hpp>
-#include <vector>
+#include <list>
 #include <set>
 
 namespace sc
@@ -18,8 +18,8 @@ namespace sc
         void deletable( Object* object );
 
       private:
-        std::vector<ObjectRef> m_nonColliders;
-        std::vector<ObjectRef> m_colliders;
+        std::list<ObjectRef> m_nonColliders;
+        std::list<ObjectRef> m_colliders;
         std::set<Object*> m_deletables;
     };
   }

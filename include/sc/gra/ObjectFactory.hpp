@@ -1,7 +1,7 @@
 #pragma once
 
 #include <sc/phi/BaseTypes.hpp>
-#include <sc/phi/ObjectFactory.hpp>
+#include <sc/phi/PhysicalObjectFactory.hpp>
 
 namespace sc
 {
@@ -14,16 +14,14 @@ namespace sc
   {
     class Engine;
 
-    class ObjectFactory : public phi::ObjectFactory
+    class ObjectFactory : public phi::PhysicalObjectFactory
     {
       public:
         ObjectFactory( phi::Sector& sector, Engine& graphicalEngine );
-
-        virtual phi::ObjectRef createShip(
-          const phi::Coordinate& coord,
-          const phi::Coordinate& speed );
-
         virtual ~ObjectFactory();
+
+        virtual phi::ObjectRef createShip( const phi::ObjectProperties& properties );
+        virtual phi::ObjectRef createRocket( const phi::ObjectProperties& properties );
 
       protected:
         Engine& m_graphicalEngine;

@@ -29,6 +29,17 @@ namespace sc
       CoordinateType y;
     };
 
+
+    struct ObjectProperties
+    {
+      ObjectProperties();
+      ObjectProperties( const Coordinate& coordinate, const Coordinate& speed, const Angle& heading = 0.0 );
+
+      Coordinate coordinate;
+      Coordinate speed;
+      Angle heading;
+    };
+
     bool operator==( const Coordinate& left, const Coordinate& right );
     sc::phi::Coordinate& operator+=( Coordinate& left, const Coordinate& right );
     sc::phi::Coordinate operator+( Coordinate left, const Coordinate& right );

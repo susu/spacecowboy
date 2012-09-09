@@ -17,9 +17,12 @@ class SectorTest : public CxxTest::TestSuite
     {
       sc::phi::Sector sector;
 
-      test::TestObject* testObject1( new test::TestObject( sector, m_start_coordinate, m_speed_moving ) );
+      test::TestObject* testObject1(
+          new test::TestObject( sector, sc::phi::ObjectProperties( m_start_coordinate, m_speed_moving ) ) );
       sc::phi::ObjectRef object1( testObject1 );
-      test::TestObject* testObject2( new test::TestObject( sector, m_start_coordinate, m_speed_moving ) );
+
+      test::TestObject* testObject2(
+          new test::TestObject( sector, sc::phi::ObjectProperties( m_start_coordinate, m_speed_moving ) ) );
       sc::phi::ObjectRef object2( testObject2 );
 
       sector.addObject( object1 );
@@ -36,7 +39,8 @@ class SectorTest : public CxxTest::TestSuite
     void test_objects_should_be_able_to_deregister_from_the_sector()
     {
       sc::phi::Sector sector;
-      test::TestObject* testObject1( new test::TestObject( sector, m_start_coordinate, m_speed_moving ) );
+      test::TestObject* testObject1(
+          new test::TestObject( sector, sc::phi::ObjectProperties( m_start_coordinate, m_speed_moving ) ) );
       sc::phi::ObjectRef object1( testObject1 );
 
       sector.addObject( object1 );

@@ -2,8 +2,8 @@
 #include <cmath>
 
 sc::phi::Coordinate::Coordinate()
-  : x( 0 )
-  , y( 0 )
+  : x( 0.0 )
+  , y( 0.0 )
 {
 }
 
@@ -90,5 +90,19 @@ sc::phi::distance( const Coordinate& left, const Coordinate& right )
   return  sqrt(
       ( left.x - right.x ) * ( left.x - right.x ) +
       ( left.y - right.y ) * ( left.y - right.y ) );
+}
+
+
+sc::phi::ObjectProperties::ObjectProperties()
+  : ObjectProperties( { 0.0, 0.0 }, { 0.0, 0.0 }, 0.0 )
+{
+}
+
+
+sc::phi::ObjectProperties::ObjectProperties( const Coordinate& coord, const Coordinate& speed, const Angle& heading )
+  : coordinate( coord )
+  , speed( speed )
+  , heading( heading )
+{
 }
 

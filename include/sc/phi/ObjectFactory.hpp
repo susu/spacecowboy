@@ -11,14 +11,14 @@ namespace sc
     {
       public:
         ObjectFactory( Sector& sector );
-
-        virtual ObjectRef createShip(
-          const sc::phi::Coordinate& coord,
-          const sc::phi::Coordinate& speed ) = 0;
-
         virtual ~ObjectFactory();
 
+        virtual ObjectRef createShip( const ObjectProperties& properties ) = 0;
+        virtual ObjectRef createRocket( const ObjectProperties& properties ) = 0;
+
       protected:
+        virtual ObjectRef createBasicObject( const ObjectProperties& properties ) = 0;
+
         Sector& m_sector;
     };
 

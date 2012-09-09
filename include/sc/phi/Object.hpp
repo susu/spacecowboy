@@ -4,6 +4,8 @@
 #include <sc/phi/Model.hpp>
 #include <sc/evt/Hub.hpp>
 
+#include <list>
+
 namespace sc
 {
   namespace phi
@@ -12,12 +14,13 @@ namespace sc
     {
       public:
         Object( Sector& sector );
-        Object( Sector& sector, const Coordinate& coordinate, const Coordinate& speed );
+        Object( Sector& sector, const ObjectProperties& properties );
+
         void timeElapsed( const Ratio& stepRatio );
         virtual ~Object();
 
         bool isColliding() const;
-        void checkCollision( const std::vector<sc::phi::ObjectRef>& collection );
+        void checkCollision( const std::list<sc::phi::ObjectRef>& collection );
 
         void addAccessory( const AccessoryRef& accessory );
 

@@ -24,7 +24,7 @@ class ColliderTest : public CxxTest::TestSuite
       test::TestObjectFactory objectFactory( sector );
 
       test::TestObject* testObject_1(
-          objectFactory.createTestShip( m_start_coordinate, m_speed_still ) );
+          objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still, 0.0 ) ) );
 
       sc::phi::Model colliderModel(
           m_start_coordinate_2,
@@ -44,8 +44,9 @@ class ColliderTest : public CxxTest::TestSuite
       sc::phi::Sector sector;
       test::TestObjectFactory objectFactory( sector );
 
-      test::TestObject* testObject_1( objectFactory.createTestShip( m_start_coordinate, m_speed_still ) );
-      objectFactory.createTestShip( m_start_coordinate_2, m_speed_moving );
+      test::TestObject* testObject_1(
+          objectFactory.createTestShip( sc::phi::ObjectProperties(  m_start_coordinate, m_speed_still, 0.0 ) ) );
+      objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate_2, m_speed_moving ) );
 
       sector.tick();
       testObject_1->assertMoved();
