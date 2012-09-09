@@ -15,6 +15,7 @@ namespace sc
 
         virtual ObjectRef createShip( const ObjectProperties& properties ) = 0;
         virtual ObjectRef createRocket( const ObjectProperties& properties ) = 0;
+        virtual ObjectRef createExplosion( const ObjectProperties& properties ) = 0;
 
       protected:
         virtual ObjectRef createBasicObject( const ObjectProperties& properties ) = 0;

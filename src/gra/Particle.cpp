@@ -200,9 +200,9 @@ void
 sc::gra::Particle::timerUpdate( const sc::phi::Ratio& ratio )
 {
   --m_colourIndex;
-  if ( m_colourIndex == 0 )
+  if ( 0 == m_colourIndex )
   {
-    m_sector.deletable( this );
+    deleteObject();
   }
 }
 

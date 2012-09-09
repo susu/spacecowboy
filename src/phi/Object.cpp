@@ -3,18 +3,15 @@
 #include <sc/phi/EventSlots.hpp>
 #include <sc/phi/CollisionEvent.hpp>
 #include <sc/phi/Accessory.hpp>
+#include <sc/phi/Sector.hpp>
 #include <sc/evt/Hub.hpp>
 
 #include <cmath>
 
 sc::phi::Object::Object( Sector& sector )
-  : evt::Hub()
-  , m_physicalModel( Coordinate( 100.0, 100.0 )
-                    ,Coordinate( 0.0, 0.0 )
-                    ,0.0
-                    ,0.0
-                    ,10.0 )
-  , m_sector( sector )
+  : Object(
+      sector,
+      ObjectProperties( Coordinate( 100.0, 100.0 ), Coordinate( 0.0, 0.0 ) ) )
 {
 }
 
@@ -76,5 +73,20 @@ sc::phi::Object::addAccessory( const AccessoryRef& accessory )
   m_accessories.push_back( accessory );
   accessory->initialize( m_physicalModel );
   add( *accessory );
+}
+
+
+void
+sc::phi::Object::deleteObject()
+{
+  m_sector.deletable( this );
+  m_deleted = true;
+}
+
+
+bool
+sc::phi::Object::isDeleted() const
+{
+  return m_deleted;
 }
 

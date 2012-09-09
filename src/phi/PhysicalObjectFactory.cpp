@@ -59,6 +59,13 @@ sc::phi::PhysicalObjectFactory::createRocket( const ObjectProperties& properties
 
 
 sc::phi::ObjectRef
+sc::phi::PhysicalObjectFactory::createExplosion( const ObjectProperties& properties )
+{
+  return ObjectRef( createWithColliderAndEngine( properties ) );
+}
+
+
+sc::phi::ObjectRef
 sc::phi::PhysicalObjectFactory::createBasicObject( const ObjectProperties& properties )
 {
   return sc::phi::ObjectRef( new Object( m_sector, properties ) );

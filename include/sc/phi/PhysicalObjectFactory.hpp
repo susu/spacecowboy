@@ -16,6 +16,7 @@ namespace sc
 
         virtual ObjectRef createShip( const sc::phi::ObjectProperties& properties );
         virtual ObjectRef createRocket( const sc::phi::ObjectProperties& properties );
+        virtual ObjectRef createExplosion( const ObjectProperties& properties );
 
       protected:
         ObjectRef createWithColliderAndEngine( const sc::phi::ObjectProperties& properties );

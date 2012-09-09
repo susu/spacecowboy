@@ -16,13 +16,16 @@ namespace sc
         RocketAi( Object* rocket, ObjectFactory& objectFactory );
         virtual ~RocketAi();
 
+        void collision( sc::evt::Event& event );
         void timer( sc::evt::Event& event );
         virtual void subscribe( sc::evt::Registry& registry );
 
       private:
+        void explode();
+
         Object* m_rocket;
         ObjectFactory& m_objectFactory;
-        unsigned int m_coolDown = 0;
+        unsigned int m_ttl;
     };
   }
 }

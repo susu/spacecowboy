@@ -30,6 +30,12 @@ namespace test
         return dynamic_cast< test::TestObject* >( rocket.get() );
       }
 
+      sc::phi::ObjectRef createExplosion( const sc::phi::ObjectProperties& prop )
+      {
+        m_explosionCreated = true;
+        return sc::phi::PhysicalObjectFactory::createExplosion( prop );
+      }
+
       sc::phi::ObjectRef createRocket( const sc::phi::ObjectProperties& prop )
       {
         m_rocketCreated = true;
@@ -42,6 +48,11 @@ namespace test
         m_rocketCreated = false;
       }
 
+      void assertExplosionCreated()
+      {
+        TS_ASSERT( m_explosionCreated );
+      }
+
     protected:
       virtual sc::phi::ObjectRef createBasicObject( const sc::phi::ObjectProperties& prop )
       {
@@ -50,7 +61,7 @@ namespace test
 
     private:
       bool m_rocketCreated = false;
-
+      bool m_explosionCreated = false;
   };
 }
 

@@ -21,6 +21,8 @@ namespace sc
 
         bool isColliding() const;
         void checkCollision( const std::list<sc::phi::ObjectRef>& collection );
+        void deleteObject();
+        bool isDeleted() const;
 
         void addAccessory( const AccessoryRef& accessory );
 
@@ -32,6 +34,7 @@ namespace sc
         virtual void timerUpdate( const Ratio& ratio ) {}
 
         AccessoryContainer m_accessories;
+        bool m_deleted = false;
     };
   }
 }

@@ -30,5 +30,36 @@ class RocketTest : public CxxTest::TestSuite
       sector.tick();
       testObject_1->assertMoved();
     }
+
+    void test_rocket_should_explode_after_a_certain_amount_of_time()
+    {
+      sc::phi::Sector sector;
+      test::TestObjectFactory objectFactory( sector );
+      sc::phi::ObjectRef rocket(
+          objectFactory.createRocket( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still ) ) );
+
+      for ( char i( 0 ); i < 100; ++i )
+      {
+        sector.tick();
+      }
+
+      objectFactory.assertExplosionCreated();
+      TS_ASSERT( rocket->isDeleted() );
+    }
+
+    void test_rocket_should_explode_when_colliding()
+    {
+      sc::phi::Sector sector;
+      test::TestObjectFactory objectFactory( sector );
+      sc::phi::ObjectRef rocket(
+          objectFactory.createRocket( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still ) ) );
+      objectFactory.createShip( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still ) );
+
+      sector.tick();
+
+      objectFactory.assertExplosionCreated();
+      TS_ASSERT( rocket->isDeleted() );
+    }
+
 };
 
