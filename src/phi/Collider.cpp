@@ -3,6 +3,7 @@
 #include <sc/phi/Model.hpp>
 #include <sc/phi/EventSlots.hpp>
 #include <sc/phi/CollisionEvent.hpp>
+#include <sc/phi/ExplosionEvent.hpp>
 #include <sc/evt/BaseTypes.hpp>
 
 #include <functional>
@@ -38,10 +39,16 @@ sc::phi::Collider::calculateCollisionForce( CollisionEvent& event ) const
 }
 
 void
+sc::phi::Collider::explosion( sc::evt::Event& event )
+{
+  ExplosionEvent& explosionEvent( dynamic_cast<ExplosionEvent&>( event ) );
+  m_physicalModel->push( m_physicalModel->coordinate() + explosionEvent.center() * -1.0 );
+}
+
+void
 sc::phi::Collider::subscribe( sc::evt::Registry& registry )
 {
-  std::function< void( Collider*, sc::evt::Event& ) > fun ( &Collider::collision );
-  sc::evt::Callback callback( std::bind( fun, this, std::placeholders::_1 ) );
-  registry[ slot::COLLISION ].push_back( callback );
+  registerMemberFunction( registry, &Collider::collision, slot::COLLISION );
+  registerMemberFunction( registry, &Collider::explosion, slot::EXPLOSION );
 }
 

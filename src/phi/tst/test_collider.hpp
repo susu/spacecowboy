@@ -4,6 +4,7 @@
 #include "sc/phi/Sector.hpp"
 #include "sc/phi/EventSlots.hpp"
 #include "sc/phi/CollisionEvent.hpp"
+#include "sc/phi/ExplosionEvent.hpp"
 #include "sc/phi/Model.hpp"
 #include "sc/evt/Event.hpp"
 #include "TestObjectFactory.hpp"
@@ -50,6 +51,21 @@ class ColliderTest : public CxxTest::TestSuite
       objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate_2, m_speed_moving ) );
 
       sector.tick();
+      testObject_1->assertMoved();
+    }
+
+
+    void test_collider_should_start_moving_after_explosion()
+    {
+      sc::phi::Sector sector;
+      test::TestObjectFactory objectFactory( sector );
+
+      test::TestObject* testObject_1(
+          objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still, 0.0 ) ) );
+
+      sc::phi::ExplosionEvent explosionEvent( m_start_coordinate_2, 10 );
+      testObject_1->dispatchEvent( explosionEvent );
+      testObject_1->timeElapsed( 1.0 );
       testObject_1->assertMoved();
     }
 

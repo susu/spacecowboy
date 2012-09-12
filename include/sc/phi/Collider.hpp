@@ -18,6 +18,7 @@ namespace sc
         virtual ~Collider();
 
         void collision( sc::evt::Event& event );
+        void explosion( sc::evt::Event& event );
 
         virtual void subscribe( sc::evt::Registry& registry );
       private:
