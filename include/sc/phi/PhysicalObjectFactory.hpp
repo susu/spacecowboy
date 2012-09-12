@@ -19,6 +19,7 @@ namespace sc
         virtual ObjectRef createExplosion( const ObjectProperties& properties );
 
       protected:
+        ObjectRef createWithoutCollider( const sc::phi::ObjectProperties& properties );
         ObjectRef createWithColliderAndEngine( const sc::phi::ObjectProperties& properties );
         virtual ObjectRef createBasicObject( const sc::phi::ObjectProperties& properties );
     };

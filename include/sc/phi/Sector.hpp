@@ -11,15 +11,19 @@ namespace sc
     class Sector
     {
       public:
+        typedef std::list<ObjectRef> ObjectContainer;
+
         Sector();
         void addObject( const ObjectRef& object );
         void tick();
 
         void deletable( Object* object );
 
+        const ObjectContainer& colliders() const;
+
       private:
-        std::list<ObjectRef> m_nonColliders;
-        std::list<ObjectRef> m_colliders;
+        ObjectContainer m_nonColliders;
+        ObjectContainer m_colliders;
         std::set<Object*> m_deletables;
     };
   }

@@ -8,18 +8,21 @@ namespace sc
 {
   namespace phi
   {
+    class Model;
+
     class ExplosionEvent : public sc::evt::Event
     {
       public:
-        ExplosionEvent( const Coordinate& center, int power );
+        ExplosionEvent( const Model& physicalModel, unsigned int power );
         virtual void handle( sc::evt::Registry& registry );
 
         Coordinate center() const;
-        int power() const;
+        const Model& model() const;
+        unsigned int power() const;
 
       private:
-        Coordinate m_center;
-        int m_power;
+        const Model& m_physicalModel;
+        unsigned int m_power;
     };
   }
 }

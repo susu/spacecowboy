@@ -33,7 +33,7 @@ namespace sc
     struct ObjectProperties
     {
       ObjectProperties();
-      ObjectProperties( const Coordinate& coordinate, const Coordinate& speed, const Angle& heading = 0.0, unsigned int radius = 10.0 );
+      ObjectProperties( const Coordinate& coordinate, const Coordinate& speed, const Angle& heading = 0.0, unsigned int radius = 10 );
 
       Coordinate coordinate;
       Coordinate speed;

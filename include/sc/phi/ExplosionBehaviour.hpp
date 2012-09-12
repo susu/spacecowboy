@@ -8,11 +8,12 @@ namespace sc
   namespace phi
   {
     class Object;
+    class Sector;
 
     class ExplosionBehaviour : public Accessory
     {
       public:
-        ExplosionBehaviour( Object* rocket );
+        ExplosionBehaviour( Sector& sector, Object* rocket );
         virtual ~ExplosionBehaviour();
 
         void timer( sc::evt::Event& event );
@@ -20,6 +21,7 @@ namespace sc
 
       private:
         Object* m_explosion;
+        Sector& m_sector;
     };
   }
 }

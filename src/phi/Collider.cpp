@@ -41,9 +41,15 @@ sc::phi::Collider::calculateCollisionForce( CollisionEvent& event ) const
 void
 sc::phi::Collider::explosion( sc::evt::Event& event )
 {
-  ExplosionEvent& explosionEvent( dynamic_cast<ExplosionEvent&>( event ) );
-  m_physicalModel->push( m_physicalModel->coordinate() + explosionEvent.center() * -1.0 );
+  ExplosionEvent& explosion( dynamic_cast<ExplosionEvent&>( event ) );
+  if ( !collides( explosion.model(), *m_physicalModel ) )
+  {
+    return;
+  }
+
+  m_physicalModel->push( m_physicalModel->coordinate() + explosion.model().coordinate() * -1.0 );
 }
+
 
 void
 sc::phi::Collider::subscribe( sc::evt::Registry& registry )

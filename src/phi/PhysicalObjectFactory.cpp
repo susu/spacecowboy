@@ -62,12 +62,21 @@ sc::phi::PhysicalObjectFactory::createRocket( const ObjectProperties& properties
 sc::phi::ObjectRef
 sc::phi::PhysicalObjectFactory::createExplosion( const ObjectProperties& properties )
 {
-  ObjectRef explosion(createWithColliderAndEngine( properties ) );
+  ObjectRef explosion(createWithoutCollider( properties ) );
 
-  sc::phi::AccessoryRef behaviour( new sc::phi::ExplosionBehaviour( explosion.get() ) );
+  sc::phi::AccessoryRef behaviour( new sc::phi::ExplosionBehaviour( m_sector, explosion.get() ) );
   explosion->addAccessory( behaviour );
 
   return explosion;
+}
+
+
+sc::phi::ObjectRef
+sc::phi::PhysicalObjectFactory::createWithoutCollider( const ObjectProperties& properties )
+{
+  phi::ObjectRef object( createBasicObject( properties ) );
+  m_sector.addObject( object );
+  return object;
 }
 
 

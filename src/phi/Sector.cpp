@@ -83,3 +83,10 @@ sc::phi::Sector::deletable( Object* object )
   m_deletables.insert( object );
 }
 
+
+const sc::phi::Sector::ObjectContainer&
+sc::phi::Sector::colliders() const
+{
+  return m_colliders;
+}
+
