@@ -5,8 +5,9 @@
 #include <cassert>
 #include "SDL.h"
 
-sc::gra::SdlEngine::SdlEngine( int x, int y )
-  : m_x( x )
+sc::gra::SdlEngine::SdlEngine( unsigned int x, unsigned int y )
+  : Engine( x, y )
+  , m_x( x )
   , m_y( y )
 {
 	assert( SDL_Init( SDL_INIT_VIDEO ) == 0 && "Unable to initialize sdl!" );
@@ -41,6 +42,8 @@ sc::gra::SdlEngine::drawShip(
   sc::phi::Coordinate perpendicular( heading.y, heading.x * -1.0 );
   drawPoint( coordinate + heading * -0.5 + perpendicular * 0.5, 4, 0xff0000 );
   drawPoint( coordinate + heading * -0.5 + perpendicular * -0.5, 4, 0xff0000 );
+
+  m_focus.inFocus( coordinate );
 }
 
 
@@ -49,9 +52,10 @@ sc::gra::SdlEngine::drawPoint(
   const sc::phi::Coordinate& center,
   int size, unsigned int colour )
 {
+  sc::phi::Coordinate newCenter( m_focus.mapCoordinate( center ) );
   SDL_Rect rectangle = {
-    static_cast<Sint16>( center.x - size / 2 ),
-    static_cast<Sint16>( center.y - size / 2 ),
+    static_cast<Sint16>( newCenter.x - size / 2 ),
+    static_cast<Sint16>( newCenter.y - size / 2 ),
     static_cast<Uint16>( size ),
     static_cast<Uint16>( size ) };
 

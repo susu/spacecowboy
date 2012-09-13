@@ -3,8 +3,9 @@
 #include <vector>
 #include <algorithm>
 
-sc::gra::Engine::Engine()
+sc::gra::Engine::Engine( unsigned int xRes, unsigned int yRes )
   : m_objectContainer()
+  , m_focus( xRes, yRes )
 {
 }
 
@@ -21,6 +22,7 @@ sc::gra::Engine::drawObjects()
   {
     object->draw();
   }
+  m_focus.updateFocus();
 }
 
 

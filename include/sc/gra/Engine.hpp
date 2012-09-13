@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <sc/gra/Focus.hpp>
 
 namespace sc
 {
@@ -16,7 +17,7 @@ namespace sc
     class Engine
     {
       public:
-        Engine();
+        Engine( unsigned int xRes, unsigned int yRes );
         virtual ~Engine();
 
         void removeObject( const Graphical* object );
@@ -35,6 +36,8 @@ namespace sc
       protected:
         void drawObjects();
         std::vector< const Graphical* > m_objectContainer;
+
+        Focus m_focus;
     };
   }
 }

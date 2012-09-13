@@ -14,7 +14,7 @@ namespace sc
     class SdlEngine : public Engine
     {
       public:
-        SdlEngine( int x, int y );
+        SdlEngine( unsigned int x, unsigned int y );
         ~SdlEngine();
 
         void drawShip(
@@ -32,8 +32,8 @@ namespace sc
 
         SDL_Surface* m_screen = 0;
 
-        int m_x;
-        int m_y;
+        unsigned int m_x;
+        unsigned int m_y;
     };
   }
 }

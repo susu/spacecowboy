@@ -17,6 +17,10 @@ namespace test
   class GraphicalEngine : public sc::gra::Engine
   {
     public:
+      GraphicalEngine() : sc::gra::Engine( 0, 0 )
+      {
+      }
+
       virtual void drawShip(
             const sc::phi::Coordinate&,
             const sc::phi::Coordinate&)
