@@ -40,6 +40,23 @@ sc::phi::operator+( Coordinate left, const Coordinate& right )
 
 
 sc::phi::Coordinate&
+sc::phi::operator-=( Coordinate& left, const Coordinate& right )
+{
+  left.x-=right.x;
+  left.y-=right.y;
+
+  return left;
+}
+
+
+sc::phi::Coordinate
+sc::phi::operator-( Coordinate left, const Coordinate& right )
+{
+  return left-=right;
+}
+
+
+sc::phi::Coordinate&
 sc::phi::operator*=( Coordinate& left, const double& right )
 {
   left.x*=right;

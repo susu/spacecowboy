@@ -45,6 +45,8 @@ namespace sc
     bool operator==( const Coordinate& left, const Coordinate& right );
     sc::phi::Coordinate& operator+=( Coordinate& left, const Coordinate& right );
     sc::phi::Coordinate operator+( Coordinate left, const Coordinate& right );
+    sc::phi::Coordinate& operator-=( Coordinate& left, const Coordinate& right );
+    sc::phi::Coordinate operator-( Coordinate left, const Coordinate& right );
     sc::phi::Coordinate& operator*=( Coordinate& left, const double& right );
     sc::phi::Coordinate operator*( Coordinate left, const double& right );
 

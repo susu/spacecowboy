@@ -37,11 +37,11 @@ sc::gra::SdlEngine::drawShip(
 {
   drawPoint( coordinate, 4, 0xaaaa00 );
   drawPoint( coordinate + heading, 4, 0x00ff00 );
-  drawPoint( coordinate + heading * -1.0, 4, 0xff0000 );
+  drawPoint( coordinate - heading, 4, 0xff0000 );
 
   sc::phi::Coordinate perpendicular( heading.y, heading.x * -1.0 );
-  drawPoint( coordinate + heading * -0.5 + perpendicular * 0.5, 4, 0xff0000 );
-  drawPoint( coordinate + heading * -0.5 + perpendicular * -0.5, 4, 0xff0000 );
+  drawPoint( coordinate - heading * 0.5 + perpendicular * 0.5, 4, 0xff0000 );
+  drawPoint( coordinate - heading * 0.5 - perpendicular * 0.5, 4, 0xff0000 );
 
   m_focus.inFocus( coordinate );
 }

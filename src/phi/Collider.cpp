@@ -30,12 +30,10 @@ sc::phi::Collider::collision( sc::evt::Event& event )
 sc::phi::Coordinate
 sc::phi::Collider::calculateCollisionForce( CollisionEvent& event ) const
 {
-  Coordinate distanceVector(
-      m_physicalModel->coordinate() * -1.0 +
-      event.otherCoord() );
+  Coordinate distanceVector( event.otherCoord() - m_physicalModel->coordinate() );
 
-  return ( project( event.otherSpeed(), distanceVector ) * -1.0 +
-         project( m_physicalModel->speed(), distanceVector ) ) * -1.0;
+  return project( event.otherSpeed(), distanceVector ) -
+         project( m_physicalModel->speed(), distanceVector );
 }
 
 void
@@ -47,7 +45,7 @@ sc::phi::Collider::explosion( sc::evt::Event& event )
     return;
   }
 
-  m_physicalModel->push( m_physicalModel->coordinate() + explosion.model().coordinate() * -1.0 );
+  m_physicalModel->push( m_physicalModel->coordinate() - explosion.model().coordinate() );
 }
 
 

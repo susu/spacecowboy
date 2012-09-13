@@ -82,8 +82,7 @@ sc::gra::EngineGraphics::shipFront() const
 sc::phi::Coordinate
 sc::gra::EngineGraphics::shipBack() const
 {
-  return m_physicalModel->coordinate() +
-    sc::phi::CoordFromPolar( m_physicalModel->heading(), m_shipRadius ) * -1.0;
+  return m_physicalModel->coordinate() - sc::phi::CoordFromPolar( m_physicalModel->heading(), m_shipRadius );
 }
 
 

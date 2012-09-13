@@ -22,7 +22,7 @@ sc::gra::Focus::Focus( unsigned int xResolution, unsigned int yResolution )
 sc::phi::Coordinate
 sc::gra::Focus::mapCoordinate( const sc::phi::Coordinate& coord )
 {
-  return ( coord + m_spaceCenter * -1.0 ) * m_ratio + m_screenCenter + sc::phi::Coordinate( BOUNDARY, BOUNDARY );
+  return ( coord - m_spaceCenter ) * m_ratio + m_screenCenter + sc::phi::Coordinate( BOUNDARY, BOUNDARY );
 }
 
 
