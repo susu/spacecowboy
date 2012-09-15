@@ -30,9 +30,9 @@ sc::phi::Launcher::fire( sc::evt::Event& event )
 
   m_objectFactory.createRocket(
       { m_physicalModel->coordinate() + CoordFromPolar( m_physicalModel->heading(), 30.0 ),
-      CoordFromPolar( m_physicalModel->heading(), 50 ),
-      m_physicalModel->heading(),
-      1 } );
+        m_physicalModel->speed(),
+        m_physicalModel->heading(),
+        1 } );
 }
 
 

@@ -39,6 +39,7 @@ namespace test
       sc::phi::ObjectRef createRocket( const sc::phi::ObjectProperties& prop )
       {
         m_rocketCreated = true;
+        m_rocketSpeed = prop.speed;
         return sc::phi::PhysicalObjectFactory::createRocket( prop );
       }
 
@@ -46,6 +47,11 @@ namespace test
       {
         TS_ASSERT( created ? m_rocketCreated : !m_rocketCreated  );
         m_rocketCreated = false;
+      }
+
+      void assertCreatedRocketSpeedEquals( const sc::phi::Coordinate& speed )
+      {
+        TS_ASSERT_EQUALS( m_rocketSpeed, speed );
       }
 
       void assertExplosionCreated()
@@ -62,6 +68,7 @@ namespace test
     private:
       bool m_rocketCreated = false;
       bool m_explosionCreated = false;
+      sc::phi::Coordinate m_rocketSpeed = { 0.0, 0.0 };
   };
 }
 
