@@ -49,7 +49,7 @@ sc::phi::Object::isColliding() const
 
 
 void
-sc::phi::Object::checkCollision( const std::list<sc::phi::ObjectRef>& collection )
+sc::phi::Object::checkCollision( const ObjectContainer& collection )
 {
   for ( auto& i : collection )
   {

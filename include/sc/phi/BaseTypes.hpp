@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <vector>
+#include <deque>
 
 namespace sc
 {
@@ -9,6 +10,7 @@ namespace sc
   {
     class Object;
     typedef std::shared_ptr<Object> ObjectRef;
+    typedef std::deque<ObjectRef> ObjectContainer;
 
     class Accessory;
     typedef std::shared_ptr<Accessory> AccessoryRef;

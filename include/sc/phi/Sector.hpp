@@ -1,7 +1,7 @@
 #pragma once
 
 #include <sc/phi/BaseTypes.hpp>
-#include <list>
+#include <deque>
 #include <set>
 
 namespace sc
@@ -11,8 +11,6 @@ namespace sc
     class Sector
     {
       public:
-        typedef std::list<ObjectRef> ObjectContainer;
-
         Sector();
         void addObject( const ObjectRef& object );
         void tick();

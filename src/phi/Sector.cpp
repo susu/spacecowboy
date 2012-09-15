@@ -9,7 +9,7 @@
 namespace
 {
   void removeDeletable(
-      std::list<sc::phi::ObjectRef>& from,
+      sc::phi::ObjectContainer& from,
       const std::set<sc::phi::Object*>& what )
   {
     for ( auto& objPtr : what )
@@ -24,7 +24,7 @@ namespace
 
 
   void updateTimeForEach(
-      const std::list<sc::phi::ObjectRef>& collection,
+      const sc::phi::ObjectContainer& collection,
       const sc::phi::Ratio& ratio )
   {
     sc::evt::BinaryEvent event( sc::phi::slot::TIMEELAPSED );
@@ -36,7 +36,7 @@ namespace
   }
 
 
-  void checkCollisionForEach( const std::list<sc::phi::ObjectRef>& collection )
+  void checkCollisionForEach( const sc::phi::ObjectContainer& collection )
   {
     for ( auto& i : collection )
     {
@@ -84,7 +84,7 @@ sc::phi::Sector::deletable( Object* object )
 }
 
 
-const sc::phi::Sector::ObjectContainer&
+const sc::phi::ObjectContainer&
 sc::phi::Sector::colliders() const
 {
   return m_colliders;

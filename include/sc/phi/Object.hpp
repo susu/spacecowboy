@@ -4,7 +4,7 @@
 #include <sc/phi/Model.hpp>
 #include <sc/evt/Hub.hpp>
 
-#include <list>
+#include <deque>
 
 namespace sc
 {
@@ -20,7 +20,7 @@ namespace sc
         virtual ~Object();
 
         bool isColliding() const;
-        void checkCollision( const std::list<sc::phi::ObjectRef>& collection );
+        void checkCollision( const ObjectContainer& collection );
         void deleteObject();
         bool isDeleted() const;
 
