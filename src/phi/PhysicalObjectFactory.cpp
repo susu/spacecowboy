@@ -83,6 +83,6 @@ sc::phi::PhysicalObjectFactory::createWithoutCollider( const ObjectProperties& p
 sc::phi::ObjectRef
 sc::phi::PhysicalObjectFactory::createBasicObject( const ObjectProperties& properties )
 {
-  return sc::phi::ObjectRef( new Object( m_sector, properties ) );
+  return sc::phi::ObjectRef( std::make_shared<Object>( m_sector, properties ) );
 }
 
