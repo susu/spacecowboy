@@ -56,6 +56,11 @@ namespace sc
 
     sc::phi::Coordinate CoordFromPolar( const Angle& angle, const double& length );
 
+    struct constant
+    {
+      static const double FLOATING_ERROR;
+    };
+
   }
 }
 

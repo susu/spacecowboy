@@ -1,6 +1,10 @@
 #include <sc/phi/BaseTypes.hpp>
 #include <cmath>
 
+
+const double sc::phi::constant::FLOATING_ERROR( 0.0001 );
+
+
 sc::phi::Coordinate::Coordinate()
   : x( 0.0 )
   , y( 0.0 )
@@ -17,8 +21,8 @@ sc::phi::Coordinate::Coordinate( double x, double y )
 bool
 sc::phi::operator==( const Coordinate& left, const Coordinate& right )
 {
-  return left.x==right.x &&
-         left.y==right.y;
+  return std::abs( left.x - right.x ) < constant::FLOATING_ERROR &&
+         std::abs( left.y - right.y ) < constant::FLOATING_ERROR;
 }
 
 

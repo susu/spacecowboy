@@ -30,11 +30,11 @@ class ModelTest : public CxxTest::TestSuite
 
       sc::phi::Angle rotationForce( 1.0 );
       m_model->spin( rotationForce );
-      TS_ASSERT_EQUALS( m_startAngularVelocity, m_model->angularVelocity() );
+      TS_ASSERT_DELTA( m_startAngularVelocity, m_model->angularVelocity(), sc::phi::constant::FLOATING_ERROR );
 
       m_model->timeElapse( m_stepRatio );
       TS_ASSERT_EQUALS( pushForce, m_model->speed() );
-      TS_ASSERT_EQUALS( rotationForce, m_model->angularVelocity() );
+      TS_ASSERT_DELTA( rotationForce, m_model->angularVelocity(), sc::phi::constant::FLOATING_ERROR );
     }
 
 
@@ -46,8 +46,8 @@ class ModelTest : public CxxTest::TestSuite
 
       m_model->timeElapse( m_stepRatio );
       m_model->timeElapse( m_stepRatio );
-      TS_ASSERT_EQUALS( force * 2.0, m_model->angularVelocity() );
-      TS_ASSERT_EQUALS( m_model->heading(), m_model->angularVelocity() * m_stepRatio * 2.0 );
+      TS_ASSERT_DELTA( force * 2.0, m_model->angularVelocity(), sc::phi::constant::FLOATING_ERROR );
+      TS_ASSERT_DELTA( m_model->heading(), m_model->angularVelocity() * m_stepRatio * 2.0, sc::phi::constant::FLOATING_ERROR );
     }
 
 

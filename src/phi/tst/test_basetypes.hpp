@@ -10,8 +10,8 @@ class BaseTypesTest : public CxxTest::TestSuite
       double length( 2.0 );
 
       sc::phi::Coordinate coord( sc::phi::CoordFromPolar( angle, length ) );
-      TS_ASSERT_EQUALS( coord.x, length );
-      TS_ASSERT_EQUALS( coord.y, 0.0 );
+      TS_ASSERT_DELTA( coord.x, length, sc::phi::constant::FLOATING_ERROR );
+      TS_ASSERT_DELTA( coord.y, 0.0, sc::phi::constant::FLOATING_ERROR );
     }
 
     void test_dot_product()
@@ -19,7 +19,7 @@ class BaseTypesTest : public CxxTest::TestSuite
       sc::phi::Coordinate a( 2.0, 3.0 );
       sc::phi::Coordinate b( 4.0, -5.0 );
 
-      TS_ASSERT_EQUALS( dotproduct( a, b ), -7.0 );
+      TS_ASSERT_DELTA( dotproduct( a, b ), -7.0, sc::phi::constant::FLOATING_ERROR );
     }
 
     void test_project()
