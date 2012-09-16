@@ -24,7 +24,7 @@ namespace sc
         void deleteObject();
         bool isDeleted() const;
 
-        void addAccessory( const AccessoryRef& accessory );
+        void addAccessory( AccessoryRef& accessory );
 
       protected:
         Model m_physicalModel;

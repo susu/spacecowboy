@@ -68,11 +68,11 @@ sc::phi::Object::checkCollision( const ObjectContainer& collection )
 
 
 void
-sc::phi::Object::addAccessory( const AccessoryRef& accessory )
+sc::phi::Object::addAccessory( AccessoryRef& accessory )
 {
-  m_accessories.push_back( accessory );
   accessory->initialize( m_physicalModel );
   add( *accessory );
+  m_accessories.push_back( std::move( accessory ) );
 }
 
 

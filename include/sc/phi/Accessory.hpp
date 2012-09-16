@@ -13,6 +13,7 @@ namespace sc
       public:
         virtual void subscribe( sc::evt::Registry& registry ) = 0;
         void initialize( Model& physicalModel );
+        virtual ~Accessory();
 
       protected:
         Model* m_physicalModel = nullptr;

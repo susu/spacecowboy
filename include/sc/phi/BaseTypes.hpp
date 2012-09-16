@@ -13,7 +13,7 @@ namespace sc
     typedef std::deque<ObjectRef> ObjectContainer;
 
     class Accessory;
-    typedef std::shared_ptr<Accessory> AccessoryRef;
+    typedef std::unique_ptr<Accessory> AccessoryRef;
     typedef std::vector<AccessoryRef> AccessoryContainer;
 
     class Sector;
