@@ -1,6 +1,7 @@
 #pragma once
 
 #include <sc/phi/BaseTypes.hpp>
+#include <sc/phi/Timer.hpp>
 #include <deque>
 #include <vector>
 
@@ -22,6 +23,8 @@ namespace sc
         ObjectContainer m_colliders;
         std::vector<ObjectRef> m_newColliders;
         std::vector<ObjectRef> m_newNonColliders;
+
+        Timer m_timer;
     };
   }
 }

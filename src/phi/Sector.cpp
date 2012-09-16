@@ -1,9 +1,9 @@
 #include <sc/phi/Sector.hpp>
 #include <sc/phi/Object.hpp>
 #include <sc/phi/EventSlots.hpp>
+#include <sc/phi/Timer.hpp>
 #include <sc/evt/Event.hpp>
 
-#include <iostream>
 #include <algorithm>
 
 namespace
@@ -52,6 +52,7 @@ namespace
   , m_colliders()
   , m_newColliders()
   , m_newNonColliders()
+  , m_timer()
 {
 }
 
@@ -72,9 +73,10 @@ sc::phi::Sector::tick()
   pourNewObjects( m_newNonColliders, m_nonColliders );
 
   checkCollisionForEach( m_colliders );
+  Ratio timeFrameRatio( m_timer.timeFrameRatio() );
 
-  updateTimeForEachAndRemoveDeleted( m_nonColliders, 0.1 );
-  updateTimeForEachAndRemoveDeleted( m_colliders, 0.1 );
+  updateTimeForEachAndRemoveDeleted( m_nonColliders, timeFrameRatio );
+  updateTimeForEachAndRemoveDeleted( m_colliders, timeFrameRatio );
 }
 
 
