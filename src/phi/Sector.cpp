@@ -68,13 +68,13 @@ sc::phi::Sector::addObject( const ObjectRef& object )
 void
 sc::phi::Sector::tick()
 {
+  pourNewObjects( m_newColliders, m_colliders );
+  pourNewObjects( m_newNonColliders, m_nonColliders );
+
   checkCollisionForEach( m_colliders );
 
   updateTimeForEachAndRemoveDeleted( m_nonColliders, 0.1 );
   updateTimeForEachAndRemoveDeleted( m_colliders, 0.1 );
-
-  pourNewObjects( m_newColliders, m_colliders );
-  pourNewObjects( m_newNonColliders, m_nonColliders );
 }
 
 
