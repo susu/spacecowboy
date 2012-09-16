@@ -26,6 +26,13 @@ sc::gra::Focus::mapCoordinate( const sc::phi::Coordinate& coord )
 }
 
 
+int
+sc::gra::Focus::mapSize( int size )
+{
+  return size * m_ratio + 1;
+}
+
+
 void
 sc::gra::Focus::inFocus( const sc::phi::Coordinate& coord )
 {

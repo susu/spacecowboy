@@ -53,11 +53,13 @@ sc::gra::SdlEngine::drawPoint(
   int size, unsigned int colour )
 {
   sc::phi::Coordinate newCenter( m_focus.mapCoordinate( center ) );
+  int newSize( m_focus.mapSize( size ) );
+
   SDL_Rect rectangle = {
-    static_cast<Sint16>( newCenter.x - size / 2 ),
-    static_cast<Sint16>( newCenter.y - size / 2 ),
-    static_cast<Uint16>( size ),
-    static_cast<Uint16>( size ) };
+    static_cast<Sint16>( newCenter.x - newSize / 2 ),
+    static_cast<Sint16>( newCenter.y - newSize / 2 ),
+    static_cast<Uint16>( newSize ),
+    static_cast<Uint16>( newSize ) };
 
   SDL_FillRect( m_screen, &rectangle, colour );
 }

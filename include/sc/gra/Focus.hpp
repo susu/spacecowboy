@@ -12,6 +12,7 @@ namespace sc
       public:
         Focus( unsigned int xResolution, unsigned int yResolution );
         sc::phi::Coordinate mapCoordinate( const sc::phi::Coordinate& );
+        int mapSize( int size );
         void updateFocus();
         void inFocus( const sc::phi::Coordinate& coord );
 
