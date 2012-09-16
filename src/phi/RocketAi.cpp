@@ -51,7 +51,7 @@ sc::phi::RocketAi::explode()
       m_physicalModel->coordinate(),
       m_physicalModel->speed(),
       0.0,
-      150 } );
+      50 } );
   m_rocket->deleteObject();
 }
 

@@ -26,7 +26,7 @@ sc::phi::Launcher::fire( sc::evt::Event& event )
     return;
   }
 
-  m_coolDown = 100;
+  m_coolDown = 20;
 
   m_objectFactory.createRocket(
       { m_physicalModel->coordinate() + CoordFromPolar( m_physicalModel->heading(), 30.0 ),
