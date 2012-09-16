@@ -31,6 +31,7 @@ class ExplosionTest : public CxxTest::TestSuite
       objectFactory.createExplosion( sc::phi::ObjectProperties( m_start_explosion_coordinate, m_speed_still, 0.0, 100 ) );
 
       sector.tick();
+      sector.tick();
       testObjectInRange->assertMoved();
       testObjectOutOfRange->assertDidNotMove();
     }

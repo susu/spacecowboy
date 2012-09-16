@@ -79,7 +79,6 @@ sc::phi::Object::addAccessory( const AccessoryRef& accessory )
 void
 sc::phi::Object::deleteObject()
 {
-  m_sector.deletable( this );
   m_deleted = true;
 }
 

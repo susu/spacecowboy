@@ -28,6 +28,7 @@ class RocketTest : public CxxTest::TestSuite
 
       sector.tick();
       sector.tick();
+      sector.tick();
       testObject_1->assertMoved();
     }
 
@@ -38,7 +39,7 @@ class RocketTest : public CxxTest::TestSuite
       sc::phi::ObjectRef rocket(
           objectFactory.createRocket( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still ) ) );
 
-      for ( char i( 0 ); i < 100; ++i )
+      for ( int i( 0 ); i < 150; ++i )
       {
         sector.tick();
       }
@@ -55,6 +56,7 @@ class RocketTest : public CxxTest::TestSuite
           objectFactory.createRocket( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still ) ) );
       objectFactory.createShip( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still ) );
 
+      sector.tick();
       sector.tick();
 
       objectFactory.assertExplosionCreated();

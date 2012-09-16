@@ -51,6 +51,7 @@ class ColliderTest : public CxxTest::TestSuite
       objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate_2, m_speed_moving ) );
 
       sector.tick();
+      sector.tick();
       testObject_1->assertMoved();
     }
 

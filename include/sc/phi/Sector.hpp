@@ -2,7 +2,7 @@
 
 #include <sc/phi/BaseTypes.hpp>
 #include <deque>
-#include <set>
+#include <vector>
 
 namespace sc
 {
@@ -15,14 +15,13 @@ namespace sc
         void addObject( const ObjectRef& object );
         void tick();
 
-        void deletable( Object* object );
-
         const ObjectContainer& colliders() const;
 
       private:
         ObjectContainer m_nonColliders;
         ObjectContainer m_colliders;
-        std::set<Object*> m_deletables;
+        std::vector<ObjectRef> m_newColliders;
+        std::vector<ObjectRef> m_newNonColliders;
     };
   }
 }

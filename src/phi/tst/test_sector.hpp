@@ -28,6 +28,7 @@ class SectorTest : public CxxTest::TestSuite
       sector.addObject( object1 );
       sector.addObject( object2 );
       sector.tick();
+      sector.tick();
       testObject1->assertMoved();
       testObject2->assertMoved();
 
@@ -36,15 +37,14 @@ class SectorTest : public CxxTest::TestSuite
     }
 
 
-    void test_objects_should_be_able_to_deregister_from_the_sector()
+    void test_deleted_objects_going_to_be_removed_from_sector()
     {
       sc::phi::Sector sector;
       test::TestObject* testObject1(
           new test::TestObject( sector, sc::phi::ObjectProperties( m_start_coordinate, m_speed_moving ) ) );
       sc::phi::ObjectRef object1( testObject1 );
-
       sector.addObject( object1 );
-      sector.deletable( testObject1 );
+      testObject1->deleteObject();
       sector.tick();
       testObject1->assertDidNotMove();
     }

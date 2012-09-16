@@ -8,30 +8,24 @@
 
 namespace
 {
-  void removeDeletable(
-      sc::phi::ObjectContainer& from,
-      const std::set<sc::phi::Object*>& what )
-  {
-    for ( auto& objPtr : what )
-    {
-      auto newEnd( std::remove_if( from.begin(), from.end(),
-            [ &objPtr ]( const sc::phi::ObjectRef& objRef )
-            { return objPtr == objRef.get(); } ) );
 
-       from.erase( newEnd, from.end() );
-    }
-  }
-
-
-  void updateTimeForEach(
-      const sc::phi::ObjectContainer& collection,
+  void updateTimeForEachAndRemoveDeleted(
+      sc::phi::ObjectContainer& collection,
       const sc::phi::Ratio& ratio )
   {
     sc::evt::BinaryEvent event( sc::phi::slot::TIMEELAPSED );
-    for ( auto& i : collection )
+    for ( sc::phi::ObjectContainer::iterator i( collection.begin() ); i!=collection.end(); )
     {
-      i->timeElapsed( ratio );
-      i->dispatchEvent( event );
+      sc::phi::Object& object( **i );
+      if ( object.isDeleted() )
+      {
+        i = collection.erase( i );
+        continue;
+      }
+
+      object.timeElapsed( ratio );
+      object.dispatchEvent( event );
+      ++i;
     }
   }
 
@@ -44,12 +38,20 @@ namespace
     }
   }
 
+
+  void pourNewObjects( std::vector<sc::phi::ObjectRef>& from, sc::phi::ObjectContainer& to )
+  {
+    to.insert( to.end(), from.begin(), from.end() );
+    from.clear();
+  }
+
 }
 
-sc::phi::Sector::Sector()
+  sc::phi::Sector::Sector()
   : m_nonColliders()
   , m_colliders()
-  , m_deletables()
+  , m_newColliders()
+  , m_newNonColliders()
 {
 }
 
@@ -58,8 +60,8 @@ void
 sc::phi::Sector::addObject( const ObjectRef& object )
 {
   object->isColliding() ?
-    m_colliders.push_back( object ) :
-    m_nonColliders.push_back( object );
+    m_newColliders.push_back( object ) :
+    m_newNonColliders.push_back( object );
 }
 
 
@@ -68,19 +70,11 @@ sc::phi::Sector::tick()
 {
   checkCollisionForEach( m_colliders );
 
-  removeDeletable( m_nonColliders, m_deletables );
-  removeDeletable( m_colliders, m_deletables );
-  m_deletables.clear();
+  updateTimeForEachAndRemoveDeleted( m_nonColliders, 0.1 );
+  updateTimeForEachAndRemoveDeleted( m_colliders, 0.1 );
 
-  updateTimeForEach( m_nonColliders, 0.1 );
-  updateTimeForEach( m_colliders, 0.1 );
-}
-
-
-void
-sc::phi::Sector::deletable( Object* object )
-{
-  m_deletables.insert( object );
+  pourNewObjects( m_newColliders, m_colliders );
+  pourNewObjects( m_newNonColliders, m_nonColliders );
 }
 
 
