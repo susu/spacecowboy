@@ -31,7 +31,7 @@ namespace sc
         Sector& m_sector;
 
       private:
-        virtual void timerUpdate( const Ratio& ratio ) {}
+        virtual void timerUpdate( const Ratio& ) {}
 
         AccessoryContainer m_accessories;
         bool m_deleted = false;

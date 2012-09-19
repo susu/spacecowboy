@@ -11,8 +11,10 @@ namespace sc
     class Hub
     {
       public:
-        void dispatchEvent( Event& event );
+        Hub();
         virtual ~Hub();
+
+        void dispatchEvent( Event& event );
         void add( Handler& handler );
         bool hasHandlerFor( SlotId slot ) const;
 

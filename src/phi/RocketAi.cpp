@@ -20,7 +20,7 @@ sc::phi::RocketAi::~RocketAi()
 
 
 void
-sc::phi::RocketAi::timer( sc::evt::Event& event )
+sc::phi::RocketAi::timer( sc::evt::Event& )
 {
   if ( 0 == --m_ttl )
   {
@@ -34,7 +34,7 @@ sc::phi::RocketAi::timer( sc::evt::Event& event )
 
 
 void
-sc::phi::RocketAi::collision( sc::evt::Event& event )
+sc::phi::RocketAi::collision( sc::evt::Event& )
 {
   if ( m_rocket->isDeleted() )
   {

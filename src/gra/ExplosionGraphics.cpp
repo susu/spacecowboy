@@ -28,7 +28,7 @@ sc::gra::ExplosionGraphics::subscribe( sc::evt::Registry& registry )
 
 
 void
-sc::gra::ExplosionGraphics::timer( sc::evt::Event& event )
+sc::gra::ExplosionGraphics::timer( sc::evt::Event& )
 {
   m_particleSource.createParticle(
       m_physicalModel->coordinate(),

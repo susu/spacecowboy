@@ -3,6 +3,11 @@
 #include <sc/evt/Handler.hpp>
 #include <sc/evt/Event.hpp>
 
+sc::evt::Hub::Hub()
+  : m_registry()
+{
+}
+
 
 sc::evt::Hub::~Hub()
 {

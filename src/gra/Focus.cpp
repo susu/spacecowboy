@@ -15,6 +15,7 @@ sc::gra::Focus::Focus( unsigned int xResolution, unsigned int yResolution )
   , m_min( 0.0, 0.0 )
   , m_max( xResolution, yResolution )
   , m_ratio( 1.0 )
+  , m_targetRatio( m_ratio )
 {
 }
 

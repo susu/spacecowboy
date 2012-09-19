@@ -6,7 +6,7 @@
 class ModelTest : public CxxTest::TestSuite
 {
   private:
-    std::unique_ptr< sc::phi::Model > m_model;
+    std::unique_ptr< sc::phi::Model > m_model{};
     sc::phi::Ratio m_stepRatio = 0.5;
     sc::phi::Coordinate m_startSpeed = { 0.0, 0.0 };
     sc::phi::Angle m_startAngularVelocity = 0.0;

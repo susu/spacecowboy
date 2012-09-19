@@ -36,7 +36,7 @@ namespace test
       }
 
     private:
-      virtual void timerUpdate( const sc::phi::Ratio& ratio )
+      virtual void timerUpdate( const sc::phi::Ratio& )
       {
         m_timerUpdateCalled = true;
       }

@@ -16,6 +16,9 @@ namespace sc
         RocketAi( Object* rocket, ObjectFactory& objectFactory );
         virtual ~RocketAi();
 
+        RocketAi( const RocketAi& ) = delete;
+        RocketAi& operator=( const RocketAi& ) = delete;
+
         void collision( sc::evt::Event& event );
         void timer( sc::evt::Event& event );
         virtual void subscribe( sc::evt::Registry& registry );

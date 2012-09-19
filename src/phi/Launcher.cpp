@@ -19,7 +19,7 @@ sc::phi::Launcher::~Launcher()
 
 
 void
-sc::phi::Launcher::fire( sc::evt::Event& event )
+sc::phi::Launcher::fire( sc::evt::Event& )
 {
   if ( m_coolDown > 0 )
   {
@@ -37,7 +37,7 @@ sc::phi::Launcher::fire( sc::evt::Event& event )
 
 
 void
-sc::phi::Launcher::timer( sc::evt::Event& event )
+sc::phi::Launcher::timer( sc::evt::Event& )
 {
   if ( m_coolDown > 0 )
   {

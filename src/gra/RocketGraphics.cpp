@@ -18,7 +18,7 @@ sc::gra::RocketGraphics::~RocketGraphics()
 
 
 void
-sc::gra::RocketGraphics::subscribe( sc::evt::Registry& registry )
+sc::gra::RocketGraphics::subscribe( sc::evt::Registry& )
 {
 }
 

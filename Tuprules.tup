@@ -1,5 +1,5 @@
 PHOME=/home/tacsko/code/spacecowboy
-CFLAGS+=-Wall -pedantic -Werror -fPIC -std=c++11 -O2
+CFLAGS+=-Wall -Wextra -Weffc++ -pedantic -Werror -fPIC -std=c++11 -O2
 INCLUDE_PATH+=-I$(PHOME)/include
 LIBS=
 LIBPATH=-L$(PHOME)/lib

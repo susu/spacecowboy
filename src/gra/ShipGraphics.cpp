@@ -18,7 +18,7 @@ sc::gra::ShipGraphics::~ShipGraphics()
 
 
 void
-sc::gra::ShipGraphics::subscribe( sc::evt::Registry& registry )
+sc::gra::ShipGraphics::subscribe( sc::evt::Registry& )
 {
 }
 

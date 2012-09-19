@@ -11,6 +11,11 @@ sc::evt::Event::notifySlot( Registry& registry, const SlotId& slot )
 }
 
 
+sc::evt::Event::~Event()
+{
+}
+
+
 sc::evt::BinaryEvent::BinaryEvent( const SlotId& slot )
   : Event()
   , m_slots( 1, slot )
@@ -32,5 +37,10 @@ sc::evt::BinaryEvent::handle( Registry& registry )
   {
     notifySlot( registry, slot );
   }
+}
+
+
+sc::evt::BinaryEvent::~BinaryEvent()
+{
 }
 

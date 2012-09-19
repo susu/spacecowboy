@@ -16,6 +16,9 @@ namespace sc
         ExplosionBehaviour( Sector& sector, Object* rocket );
         virtual ~ExplosionBehaviour();
 
+        ExplosionBehaviour( const ExplosionBehaviour& ) = delete;
+        ExplosionBehaviour& operator=( const ExplosionBehaviour& ) = delete;
+
         void timer( sc::evt::Event& event );
         virtual void subscribe( sc::evt::Registry& registry );
 

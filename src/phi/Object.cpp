@@ -24,6 +24,7 @@ sc::phi::Object::Object( Sector& sector, const ObjectProperties& properties )
                     ,0.0
                     ,properties.radius )
   , m_sector( sector )
+  , m_accessories()
 {
 }
 

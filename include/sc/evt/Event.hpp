@@ -11,6 +11,7 @@ namespace sc
     {
       public:
         virtual void handle( Registry& registry ) = 0;
+        virtual ~Event();
 
       protected:
         void notifySlot( Registry& registry, const SlotId& slot );
@@ -23,6 +24,8 @@ namespace sc
         void addSlot( const SlotId& slot );
 
         void handle( Registry& registry );
+
+        virtual ~BinaryEvent();
 
       private:
         std::vector< SlotId > m_slots;

@@ -29,7 +29,7 @@ namespace test
 
       virtual void drawPoint(
             const sc::phi::Coordinate&,
-            int size, unsigned int colour )
+            int, unsigned int )
       {
       }
 

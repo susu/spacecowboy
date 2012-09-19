@@ -33,7 +33,7 @@ sc::gra::EngineGraphics::subscribe( sc::evt::Registry& registry )
 
 
 void
-sc::gra::EngineGraphics::pimpBackThruster( sc::evt::Event& event )
+sc::gra::EngineGraphics::pimpBackThruster( sc::evt::Event& )
 {
   m_particleSource.createParticle(
       shipBack(),
@@ -43,7 +43,7 @@ sc::gra::EngineGraphics::pimpBackThruster( sc::evt::Event& event )
 
 
 void
-sc::gra::EngineGraphics::pimpCwThruster( sc::evt::Event& event )
+sc::gra::EngineGraphics::pimpCwThruster( sc::evt::Event& )
 {
   m_particleSource.createParticle(
       shipFront(),
@@ -58,7 +58,7 @@ sc::gra::EngineGraphics::pimpCwThruster( sc::evt::Event& event )
 
 
 void
-sc::gra::EngineGraphics::pimpCcwThruster( sc::evt::Event& event )
+sc::gra::EngineGraphics::pimpCcwThruster( sc::evt::Event& )
 {
   m_particleSource.createParticle(
       shipFront(),

@@ -16,7 +16,7 @@ namespace test
       {
       }
 
-      void handleEvent( sc::evt::Event& event )
+      void handleEvent( sc::evt::Event& )
       {
         m_called = true;
       }

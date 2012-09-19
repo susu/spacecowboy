@@ -21,6 +21,8 @@ namespace sc
           registry[ slot ].push_back( callback );
         }
 
+        virtual ~Handler();
+
     };
   }
 }

@@ -21,7 +21,7 @@ sc::phi::ExplosionBehaviour::~ExplosionBehaviour()
 
 
 void
-sc::phi::ExplosionBehaviour::timer( sc::evt::Event& event )
+sc::phi::ExplosionBehaviour::timer( sc::evt::Event& )
 {
   sc::phi::ExplosionEvent explosion( *m_physicalModel, 100 );
   for ( auto& collider : m_sector.colliders() )

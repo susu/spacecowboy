@@ -197,7 +197,7 @@ sc::gra::Particle::draw() const
 
 
 void
-sc::gra::Particle::timerUpdate( const sc::phi::Ratio& ratio )
+sc::gra::Particle::timerUpdate( const sc::phi::Ratio& )
 {
   --m_colourIndex;
   if ( 0 == m_colourIndex )
