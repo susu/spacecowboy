@@ -35,14 +35,22 @@ sc::gra::ParticleSource::createParticle(
     const sc::phi::Coordinate& baseSpeed,
     const sc::phi::Angle& heading )
 {
-  for ( unsigned int i( 0 ); i < m_density; ++i)
+  try
   {
-    sc::phi::ObjectRef particle(
-        new Particle( m_sector, m_graphicalEngine,
-          coord,
-          baseSpeed + sc::phi::CoordFromPolar( heading + getRandom( m_deviation ), m_velocity + getRandom( 2.0 * m_velocity ) ) )
-        );
-    m_sector.addObject( particle );
+    for ( unsigned int i( 0 ); i < m_density; ++i)
+    {
+      sc::phi::ObjectRef particle(
+          new Particle(
+            m_sector, m_graphicalEngine,
+            coord,
+            baseSpeed + sc::phi::CoordFromPolar( heading + getRandom( m_deviation ), m_velocity + getRandom( 2.0 * m_velocity ) ) )
+          );
+
+      m_sector.addObject( particle );
+    }
+  }
+  catch ( std::bad_alloc& )
+  {
   }
 }
 

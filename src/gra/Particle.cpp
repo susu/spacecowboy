@@ -4,6 +4,7 @@
 #include <sc/gra/Graphical.hpp>
 #include <sc/gra/Engine.hpp>
 #include <sc/gra/Particle.hpp>
+#include <sc/utl/MemoryPool.hpp>
 
 #include <vector>
 #include <cstdlib>
@@ -204,5 +205,26 @@ sc::gra::Particle::timerUpdate( const sc::phi::Ratio& )
   {
     deleteObject();
   }
+}
+
+
+namespace
+{
+  const unsigned int POOL_CAPACITY( 100000 );
+  sc::utl::MemoryPool< sc::gra::Particle, POOL_CAPACITY > POOL;
+}
+
+
+void *
+sc::gra::Particle::operator new( size_t size )
+{
+  return POOL.allocate( size );
+}
+
+
+void
+sc::gra::Particle::operator delete( void *memory )
+{
+  POOL.release( memory );
 }
 

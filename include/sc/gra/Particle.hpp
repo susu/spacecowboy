@@ -25,6 +25,8 @@ namespace sc
 
         void draw() const;
 
+        void *operator new( size_t size );
+        void operator delete( void *memory );
       private:
         void timerUpdate( const sc::phi::Ratio& ratio );
         unsigned int m_colourIndex;
