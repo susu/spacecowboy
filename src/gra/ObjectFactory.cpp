@@ -18,7 +18,7 @@ sc::gra::ObjectFactory::ObjectFactory( phi::Sector& sector, Engine& graphicalEng
 sc::phi::ObjectRef
 sc::gra::ObjectFactory::createShip( const sc::phi::ObjectProperties& properties )
 {
-  phi::ObjectRef object( createWithColliderAndEngine( properties ) );
+  phi::ObjectRef object( PhysicalObjectFactory::createShip( properties ) );
 
   sc::phi::AccessoryRef shipGraphics( new sc::gra::ShipGraphics( m_graphicalEngine ) );
   object->addAccessory( shipGraphics );

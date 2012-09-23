@@ -2,6 +2,7 @@
 
 #include <sc/evt/BaseTypes.hpp>
 #include <sc/phi/Accessory.hpp>
+#include <sc/phi/BaseTypes.hpp>
 
 namespace sc
 {
@@ -14,8 +15,11 @@ namespace sc
     class Collider : public Accessory
     {
       public:
-        Collider();
+        Collider( const ObjectRef& object );
         virtual ~Collider();
+
+        Collider( const Collider& ) = delete;
+        Collider& operator=( const Collider& ) = delete;
 
         void collision( sc::evt::Event& event );
         void explosion( sc::evt::Event& event );
@@ -23,6 +27,7 @@ namespace sc
         virtual void subscribe( sc::evt::Registry& registry );
       private:
         Coordinate calculateCollisionForce( CollisionEvent& event ) const;
+        Object* m_object;
     };
   }
 }

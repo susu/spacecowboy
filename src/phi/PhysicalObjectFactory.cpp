@@ -7,6 +7,7 @@
 #include <sc/phi/RocketAi.hpp>
 #include <sc/phi/ExplosionBehaviour.hpp>
 #include <sc/phi/Launcher.hpp>
+#include <sc/phi/ShipStructure.hpp>
 
 sc::phi::PhysicalObjectFactory::PhysicalObjectFactory( Sector& sector )
   : ObjectFactory( sector )
@@ -23,13 +24,13 @@ sc::phi::ObjectRef
 sc::phi::PhysicalObjectFactory::createWithColliderAndEngine( const ObjectProperties& properties )
 {
   phi::ObjectRef object( createBasicObject( properties ) );
-  phi::AccessoryRef engine( new sc::phi::Engine( 0.5, 0.05 ) );
+  phi::AccessoryRef engine( new Engine( 0.5, 0.05 ) );
   object->addAccessory( engine );
 
-  sc::phi::AccessoryRef collider( new sc::phi::Collider() );
+  AccessoryRef collider( new Collider( object ) );
   object->addAccessory( collider );
 
-  sc::phi::AccessoryRef launcher( new sc::phi::Launcher( *this ) );
+  AccessoryRef launcher( new Launcher( *this ) );
   object->addAccessory( launcher );
 
   m_sector.addObject( object );
@@ -41,7 +42,10 @@ sc::phi::PhysicalObjectFactory::createWithColliderAndEngine( const ObjectPropert
 sc::phi::ObjectRef
 sc::phi::PhysicalObjectFactory::createShip( const ObjectProperties& properties )
 {
-  phi::ObjectRef object( createWithColliderAndEngine( properties ) );
+  ObjectRef object( createWithColliderAndEngine( properties ) );
+
+  AccessoryRef structure( new ShipStructure( object ) );
+  object->addAccessory( structure );
 
   return object;
 }
@@ -52,7 +56,7 @@ sc::phi::PhysicalObjectFactory::createRocket( const ObjectProperties& properties
 {
   phi::ObjectRef object( createWithColliderAndEngine( properties ) );
 
-  sc::phi::AccessoryRef ai( new sc::phi::RocketAi( object.get(), *this ) );
+  AccessoryRef ai( new RocketAi( object.get(), *this ) );
   object->addAccessory( ai );
 
   return object;
@@ -64,7 +68,7 @@ sc::phi::PhysicalObjectFactory::createExplosion( const ObjectProperties& propert
 {
   ObjectRef explosion(createWithoutCollider( properties ) );
 
-  sc::phi::AccessoryRef behaviour( new sc::phi::ExplosionBehaviour( m_sector, explosion.get() ) );
+  AccessoryRef behaviour( new ExplosionBehaviour( m_sector, explosion.get() ) );
   explosion->addAccessory( behaviour );
 
   return explosion;
@@ -83,6 +87,6 @@ sc::phi::PhysicalObjectFactory::createWithoutCollider( const ObjectProperties& p
 sc::phi::ObjectRef
 sc::phi::PhysicalObjectFactory::createBasicObject( const ObjectProperties& properties )
 {
-  return sc::phi::ObjectRef( std::make_shared<Object>( m_sector, properties ) );
+  return ObjectRef( std::make_shared<Object>( m_sector, properties ) );
 }
 
