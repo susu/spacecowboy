@@ -20,12 +20,9 @@ namespace sc
         SdlEngine( const SdlEngine& ) = delete;
         SdlEngine& operator=( const SdlEngine& ) = delete;
 
-        void drawShip(
-            const sc::phi::Coordinate& coordinate,
-            const sc::phi::Coordinate& heading );
-
-        void drawPoint(
-            const sc::phi::Coordinate& center,
+        virtual void drawRawRectangle(
+            unsigned int x,
+            unsigned int y,
             int size, unsigned int colour );
 
         void updateScreen();

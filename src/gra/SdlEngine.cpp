@@ -32,35 +32,16 @@ sc::gra::SdlEngine::updateScreen()
 
 
 void
-sc::gra::SdlEngine::drawShip(
-    const sc::phi::Coordinate& coordinate,
-    const sc::phi::Coordinate& heading )
+sc::gra::SdlEngine::drawRawRectangle(
+    unsigned int x,
+    unsigned int y,
+    int size, unsigned int colour )
 {
-  drawPoint( coordinate, 4, 0xaaaa00 );
-  drawPoint( coordinate + heading, 4, 0x00ff00 );
-  drawPoint( coordinate - heading, 4, 0xff0000 );
-
-  sc::phi::Coordinate perpendicular( heading.y, heading.x * -1.0 );
-  drawPoint( coordinate - heading * 0.5 + perpendicular * 0.5, 4, 0xff0000 );
-  drawPoint( coordinate - heading * 0.5 - perpendicular * 0.5, 4, 0xff0000 );
-
-  m_focus.inFocus( coordinate );
-}
-
-
-void
-sc::gra::SdlEngine::drawPoint(
-  const sc::phi::Coordinate& center,
-  int size, unsigned int colour )
-{
-  sc::phi::Coordinate newCenter( m_focus.mapCoordinate( center ) );
-  int newSize( m_focus.mapSize( size ) );
-
   SDL_Rect rectangle = {
-    static_cast<Sint16>( newCenter.x - newSize / 2 ),
-    static_cast<Sint16>( newCenter.y - newSize / 2 ),
-    static_cast<Uint16>( newSize ),
-    static_cast<Uint16>( newSize ) };
+    static_cast<Sint16>( x - size / 2 ),
+    static_cast<Sint16>( y - size / 2 ),
+    static_cast<Uint16>( size ),
+    static_cast<Uint16>( size ) };
 
   SDL_FillRect( m_screen, &rectangle, colour );
 }

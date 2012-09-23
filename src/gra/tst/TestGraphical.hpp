@@ -33,6 +33,13 @@ namespace test
       {
       }
 
+      virtual void drawRawRectangle(
+            unsigned int,
+            unsigned int,
+            int, unsigned int)
+      {
+      }
+
       virtual void updateScreen()
       {
         drawObjects();
@@ -47,7 +54,7 @@ namespace test
       {
       }
 
-        virtual ~GraphicalObject()
+      virtual ~GraphicalObject()
       {
       }
 

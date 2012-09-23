@@ -25,10 +25,15 @@ namespace sc
 
         virtual void drawShip(
             const sc::phi::Coordinate& coordinate,
-            const sc::phi::Coordinate& heading ) = 0;
+            const sc::phi::Coordinate& heading );
 
         virtual void drawPoint(
             const sc::phi::Coordinate& center,
+            int size, unsigned int colour );
+
+        virtual void drawRawRectangle(
+            unsigned int x,
+            unsigned int y,
             int size, unsigned int colour ) = 0;
 
         virtual void updateScreen() = 0;
