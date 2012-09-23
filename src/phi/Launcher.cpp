@@ -6,9 +6,15 @@
 #include <sc/phi/EventSlots.hpp>
 #include <sc/evt/BaseTypes.hpp>
 
+namespace
+{
+  const int COOLDOWN( 30 );
+}
+
 sc::phi::Launcher::Launcher( ObjectFactory& objectFactory )
   : Accessory()
   , m_objectFactory( objectFactory )
+  , m_coolDown( 0 )
 {
 }
 
@@ -26,7 +32,7 @@ sc::phi::Launcher::fire( sc::evt::Event& )
     return;
   }
 
-  m_coolDown = 20;
+  m_coolDown = COOLDOWN;
 
   m_objectFactory.createRocket(
       { m_physicalModel->coordinate() + CoordFromPolar( m_physicalModel->heading(), 30.0 ),

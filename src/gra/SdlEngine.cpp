@@ -7,6 +7,7 @@
 
 sc::gra::SdlEngine::SdlEngine( unsigned int x, unsigned int y )
   : Engine( x, y )
+  , m_screen( nullptr )
   , m_x( x )
   , m_y( y )
 {

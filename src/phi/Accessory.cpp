@@ -1,5 +1,12 @@
 #include <sc/phi/Accessory.hpp>
 
+sc::phi::Accessory::Accessory()
+  : evt::Handler()
+  , m_physicalModel( nullptr )
+{
+}
+
+
 void
 sc::phi::Accessory::initialize( Model& physicalModel )
 {

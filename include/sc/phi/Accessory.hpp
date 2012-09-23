@@ -11,12 +11,17 @@ namespace sc
     class Accessory : public sc::evt::Handler
     {
       public:
+        Accessory();
+
+        Accessory( const Accessory& ) = delete;
+        Accessory& operator=( const Accessory& ) = delete;
+
         virtual void subscribe( sc::evt::Registry& registry ) = 0;
         void initialize( Model& physicalModel );
         virtual ~Accessory();
 
       protected:
-        Model* m_physicalModel = nullptr;
+        Model* m_physicalModel;
 
     };
   }

@@ -21,7 +21,7 @@ namespace sc
         virtual void subscribe( sc::evt::Registry& registry );
       private:
         ObjectFactory& m_objectFactory;
-        unsigned int m_coolDown = 0;
+        unsigned int m_coolDown;
     };
   }
 }

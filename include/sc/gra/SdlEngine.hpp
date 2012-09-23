@@ -33,7 +33,7 @@ namespace sc
       private:
         void drawBackground();
 
-        SDL_Surface* m_screen = 0;
+        SDL_Surface* m_screen;
 
         unsigned int m_x;
         unsigned int m_y;

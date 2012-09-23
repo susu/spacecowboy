@@ -34,7 +34,7 @@ namespace sc
         virtual void timerUpdate( const Ratio& ) {}
 
         AccessoryContainer m_accessories;
-        bool m_deleted = false;
+        bool m_deleted;
     };
   }
 }
