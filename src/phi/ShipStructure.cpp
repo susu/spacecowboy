@@ -3,9 +3,9 @@
 #include <sc/phi/Model.hpp>
 #include <sc/phi/EventSlots.hpp>
 #include <sc/phi/Object.hpp>
+#include <sc/phi/IntegrityChangeEvent.hpp>
 #include <sc/evt/BaseTypes.hpp>
 
-#include <iostream>
 
 sc::phi::ShipStructure::ShipStructure( const ObjectRef& object )
   : Accessory()
@@ -24,7 +24,7 @@ void
 sc::phi::ShipStructure::collisionDamage( sc::evt::Event& )
 {
   m_integrity-=10;
-  dieIfDamagedEnough();
+  handleShipDamaged();
 }
 
 
@@ -32,7 +32,23 @@ void
 sc::phi::ShipStructure::explosionDamage( sc::evt::Event& )
 {
   m_integrity-=30;
+  handleShipDamaged();
+}
+
+
+void
+sc::phi::ShipStructure::handleShipDamaged()
+{
+  notifyAboutIntegrityChange();
   dieIfDamagedEnough();
+}
+
+
+void
+sc::phi::ShipStructure::notifyAboutIntegrityChange()
+{
+  sc::phi::IntegrityChanged event( m_integrity );
+  m_object->dispatchEvent( event );
 }
 
 
@@ -45,13 +61,6 @@ sc::phi::ShipStructure::dieIfDamagedEnough()
   }
 
   m_object->deleteObject();
-}
-
-
-int
-sc::phi::ShipStructure::getIntegrity() const
-{
-  return m_integrity > 0 ? m_integrity : 0;
 }
 
 

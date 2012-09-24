@@ -44,7 +44,8 @@ sc::gra::Engine::removeObject( const Graphical* object )
 void
 sc::gra::Engine::drawShip(
     const sc::phi::Coordinate& coordinate,
-    const sc::phi::Coordinate& heading )
+    const sc::phi::Coordinate& heading,
+    int integrity )
 {
   drawPoint( coordinate, 4, 0xaaaa00 );
   drawPoint( coordinate + heading, 4, 0x00ff00 );
@@ -55,6 +56,14 @@ sc::gra::Engine::drawShip(
   drawPoint( coordinate - heading * 0.5 - perpendicular * 0.5, 4, 0xff0000 );
 
   m_focus.inFocus( coordinate );
+
+  sc::phi::Coordinate mappedCenter( m_focus.mapCoordinate( coordinate ) );
+  int scaledIntegrity( integrity / 10 );
+  for ( int i( 0 ); i < scaledIntegrity; ++i )
+  {
+    sc::phi::Coordinate point( mappedCenter - sc::phi::Coordinate{ 15.0 - i * 5, 15.0 } );
+    drawRawRectangle( point.x, point.y, 4, 0xffff00 );
+  }
 }
 
 

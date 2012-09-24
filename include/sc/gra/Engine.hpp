@@ -25,7 +25,8 @@ namespace sc
 
         virtual void drawShip(
             const sc::phi::Coordinate& coordinate,
-            const sc::phi::Coordinate& heading );
+            const sc::phi::Coordinate& heading,
+            int integrity );
 
         virtual void drawPoint(
             const sc::phi::Coordinate& center,

@@ -24,9 +24,9 @@ namespace sc
 
         virtual void subscribe( sc::evt::Registry& registry );
 
-        int getIntegrity() const;
-
       private:
+        void handleShipDamaged();
+        void notifyAboutIntegrityChange();
         void dieIfDamagedEnough();
 
         Object* m_object;

@@ -19,9 +19,9 @@ namespace sc
         static const evt::SlotId COLLISION;
         static const evt::SlotId EXPLOSION;
         static const evt::SlotId FIRE;
-
         static const evt::SlotId COLLISION_DAMAGE;
         static const evt::SlotId EXPLOSION_DAMAGE;
+        static const evt::SlotId OBJECT_INTEGRITY_CHANGED;
     };
   }
 }

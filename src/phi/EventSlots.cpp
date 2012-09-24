@@ -12,4 +12,5 @@ const sc::evt::SlotId sc::phi::slot::EXPLOSION = 8;
 const sc::evt::SlotId sc::phi::slot::FIRE= 9;
 const sc::evt::SlotId sc::phi::slot::COLLISION_DAMAGE = 10;
 const sc::evt::SlotId sc::phi::slot::EXPLOSION_DAMAGE = 11;
+const sc::evt::SlotId sc::phi::slot::OBJECT_INTEGRITY_CHANGED = 12;
 

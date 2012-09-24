@@ -14,8 +14,15 @@ namespace sc
       public:
         ShipGraphics( sc::gra::Engine& graphicalEngine );
         virtual ~ShipGraphics();
+
+        void shipIntegrityChanged( sc::evt::Event& event );
+
         virtual void subscribe( sc::evt::Registry& registry );
         virtual void draw() const;
+
+      private:
+        int m_integrity;
+
     };
   }
 }
