@@ -16,6 +16,12 @@ sc::phi::Accessory::initialize( Object& owner, Model& physicalModel )
 }
 
 
+void
+sc::phi::Accessory::subscribe( sc::evt::Registry& )
+{
+}
+
+
 sc::phi::Accessory::~Accessory()
 {
 }

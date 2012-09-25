@@ -17,7 +17,7 @@ namespace sc
         Accessory( const Accessory& ) = delete;
         Accessory& operator=( const Accessory& ) = delete;
 
-        virtual void subscribe( sc::evt::Registry& registry ) = 0;
+        virtual void subscribe( sc::evt::Registry& registry );
         void initialize( Object& owner, Model& physicalModel );
         virtual ~Accessory();
 
