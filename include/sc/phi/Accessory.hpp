@@ -8,6 +8,7 @@ namespace sc
   {
     class Model;
     class Object;
+    class Sector;
 
     class Accessory : public sc::evt::Handler
     {
@@ -18,12 +19,13 @@ namespace sc
         Accessory& operator=( const Accessory& ) = delete;
 
         virtual void subscribe( sc::evt::Registry& registry );
-        void initialize( Object& owner, Model& physicalModel );
+        void initialize( Object& owner, Model& physicalModel, Sector& sector );
         virtual ~Accessory();
 
       protected:
         Model* m_physicalModel;
         Object* m_owningObject;
+        Sector* m_sector;
 
     };
   }
