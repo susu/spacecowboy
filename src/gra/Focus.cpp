@@ -5,7 +5,7 @@
 
 namespace
 {
-  const sc::phi::CoordinateType BOUNDARY( 50.0 );
+  const sc::phi::CoordinateType BOUNDARY( 100.0 );
 }
 
 sc::gra::Focus::Focus( unsigned int xResolution, unsigned int yResolution )
@@ -51,7 +51,7 @@ sc::gra::Focus::updateFocus()
   m_ratio = std::min( ( m_screenResolution.x - BOUNDARY * 2.0 ) / ( physicalResolution.x ),
                       ( m_screenResolution.y - BOUNDARY * 2.0 ) / ( physicalResolution.y ) );
 
-  m_ratio = std::min( m_ratio, 3.0 );
+  m_ratio = std::min( m_ratio, 1.0 );
 
   m_spaceCenter = m_min + physicalResolution * 0.5;
 
