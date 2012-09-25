@@ -3,13 +3,15 @@
 sc::phi::Accessory::Accessory()
   : evt::Handler()
   , m_physicalModel( nullptr )
+  , m_owningObject( nullptr )
 {
 }
 
 
 void
-sc::phi::Accessory::initialize( Model& physicalModel )
+sc::phi::Accessory::initialize( Object& owner, Model& physicalModel )
 {
+  m_owningObject = &owner;
   m_physicalModel = &physicalModel;
 }
 

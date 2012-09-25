@@ -72,7 +72,7 @@ sc::phi::Object::checkCollision( const ObjectContainer& collection )
 void
 sc::phi::Object::addAccessory( AccessoryRef& accessory )
 {
-  accessory->initialize( m_physicalModel );
+  accessory->initialize( *this, m_physicalModel );
   add( *accessory );
   m_accessories.push_back( std::move( accessory ) );
 }

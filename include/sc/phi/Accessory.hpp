@@ -7,6 +7,7 @@ namespace sc
   namespace phi
   {
     class Model;
+    class Object;
 
     class Accessory : public sc::evt::Handler
     {
@@ -17,11 +18,12 @@ namespace sc
         Accessory& operator=( const Accessory& ) = delete;
 
         virtual void subscribe( sc::evt::Registry& registry ) = 0;
-        void initialize( Model& physicalModel );
+        void initialize( Object& owner, Model& physicalModel );
         virtual ~Accessory();
 
       protected:
         Model* m_physicalModel;
+        Object* m_owningObject;
 
     };
   }

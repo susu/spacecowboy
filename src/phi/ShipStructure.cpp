@@ -7,9 +7,8 @@
 #include <sc/evt/BaseTypes.hpp>
 
 
-sc::phi::ShipStructure::ShipStructure( const ObjectRef& object )
+sc::phi::ShipStructure::ShipStructure()
   : Accessory()
-  , m_object( object.get() )
   , m_integrity( 100 )
 {
 }
@@ -48,7 +47,7 @@ void
 sc::phi::ShipStructure::notifyAboutIntegrityChange()
 {
   sc::phi::IntegrityChanged event( m_integrity );
-  m_object->dispatchEvent( event );
+  m_owningObject->dispatchEvent( event );
 }
 
 
@@ -60,7 +59,7 @@ sc::phi::ShipStructure::dieIfDamagedEnough()
     return;
   }
 
-  m_object->deleteObject();
+  m_owningObject->deleteObject();
 }
 
 

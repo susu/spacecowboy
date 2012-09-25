@@ -9,9 +9,8 @@
 
 #include <functional>
 
-sc::phi::Collider::Collider( const ObjectRef& object )
+sc::phi::Collider::Collider()
   : Accessory()
-  , m_object( object.get() )
 {
 }
 
@@ -28,7 +27,7 @@ sc::phi::Collider::collision( sc::evt::Event& event )
   m_physicalModel->push( calculateCollisionForce( collisionEvent ) );
 
   evt::BinaryEvent damage( slot::COLLISION_DAMAGE );
-  m_object->dispatchEvent( damage );
+  m_owningObject->dispatchEvent( damage );
 }
 
 
@@ -53,7 +52,7 @@ sc::phi::Collider::explosion( sc::evt::Event& event )
   m_physicalModel->push( m_physicalModel->coordinate() - explosion.model().coordinate() );
 
   evt::BinaryEvent damage( slot::EXPLOSION_DAMAGE );
-  m_object->dispatchEvent( damage );
+  m_owningObject->dispatchEvent( damage );
 }
 
 

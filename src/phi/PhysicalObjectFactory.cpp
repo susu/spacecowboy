@@ -27,7 +27,7 @@ sc::phi::PhysicalObjectFactory::createWithColliderAndEngine( const ObjectPropert
   phi::AccessoryRef engine( new Engine( 0.5, 0.05 ) );
   object->addAccessory( engine );
 
-  AccessoryRef collider( new Collider( object ) );
+  AccessoryRef collider( new Collider() );
   object->addAccessory( collider );
 
   AccessoryRef launcher( new Launcher( *this ) );
@@ -44,7 +44,7 @@ sc::phi::PhysicalObjectFactory::createShip( const ObjectProperties& properties )
 {
   ObjectRef object( createWithColliderAndEngine( properties ) );
 
-  AccessoryRef structure( new ShipStructure( object ) );
+  AccessoryRef structure( new ShipStructure() );
   object->addAccessory( structure );
 
   return object;
@@ -54,10 +54,17 @@ sc::phi::PhysicalObjectFactory::createShip( const ObjectProperties& properties )
 sc::phi::ObjectRef
 sc::phi::PhysicalObjectFactory::createRocket( const ObjectProperties& properties )
 {
-  phi::ObjectRef object( createWithColliderAndEngine( properties ) );
+  phi::ObjectRef object( createBasicObject( properties ) );
+  phi::AccessoryRef engine( new Engine( 1.5, 0.15 ) );
+  object->addAccessory( engine );
+
+  AccessoryRef collider( new Collider() );
+  object->addAccessory( collider );
 
   AccessoryRef ai( new RocketAi( object.get(), *this ) );
   object->addAccessory( ai );
+
+  m_sector.addObject( object );
 
   return object;
 }

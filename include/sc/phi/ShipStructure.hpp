@@ -13,7 +13,7 @@ namespace sc
     class ShipStructure : public Accessory
     {
       public:
-        ShipStructure( const ObjectRef& object );
+        ShipStructure();
         virtual ~ShipStructure();
 
         ShipStructure( const ShipStructure& ) = delete;
@@ -29,7 +29,6 @@ namespace sc
         void notifyAboutIntegrityChange();
         void dieIfDamagedEnough();
 
-        Object* m_object;
         int m_integrity;
     };
   }

@@ -8,14 +8,13 @@ namespace sc
 {
   namespace phi
   {
-    class Model;
     class Coordinate;
     class CollisionEvent;
 
     class Collider : public Accessory
     {
       public:
-        Collider( const ObjectRef& object );
+        Collider();
         virtual ~Collider();
 
         Collider( const Collider& ) = delete;
@@ -27,7 +26,6 @@ namespace sc
         virtual void subscribe( sc::evt::Registry& registry );
       private:
         Coordinate calculateCollisionForce( CollisionEvent& event ) const;
-        Object* m_object;
     };
   }
 }
