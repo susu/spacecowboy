@@ -30,5 +30,12 @@ class BaseTypesTest : public CxxTest::TestSuite
       TS_ASSERT_EQUALS( project( a, b ), sc::phi::Coordinate( 2.0, 0.0 ) );
     }
 
+    void test_length()
+    {
+      sc::phi::Coordinate a( 2.0, 3.0 );
+
+      TS_ASSERT_DELTA( sc::phi::length( a ), 3.60555, sc::phi::constant::FLOATING_ERROR );
+    }
+
 };
 

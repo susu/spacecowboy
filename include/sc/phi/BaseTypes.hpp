@@ -57,6 +57,7 @@ namespace sc
     sc::phi::Coordinate project( const Coordinate& left, const Coordinate& right );
 
     sc::phi::Coordinate CoordFromPolar( const Angle& angle, const double& length );
+    double length( const Coordinate& vector );
 
     struct constant
     {

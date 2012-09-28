@@ -114,6 +114,13 @@ sc::phi::distance( const Coordinate& left, const Coordinate& right )
 }
 
 
+double
+sc::phi::length( const Coordinate& vector )
+{
+  return sqrt( vector.x * vector.x + vector.y * vector.y );
+}
+
+
 sc::phi::ObjectProperties::ObjectProperties()
   : ObjectProperties( { 0.0, 0.0 }, { 0.0, 0.0 }, 0.0 )
 {
