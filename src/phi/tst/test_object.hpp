@@ -18,7 +18,7 @@ class ObjectTest : public CxxTest::TestSuite
       sc::phi::Sector sector;
 
       test::TestObject* testObject(
-          new test::TestObject( sector, sc::phi::ObjectProperties( m_start_coordinate, m_speed_still, 0.0 ) ) );
+          new test::TestObject( sector, sc::phi::ObjectProperties( m_start_coordinate, m_speed_still, 0.0, 10, 1 ) ) );
       sc::phi::ObjectRef object( testObject );
 
       test::TestAccessory* testAccessory( new test::TestAccessory( 1 ) );
@@ -38,7 +38,7 @@ class ObjectTest : public CxxTest::TestSuite
       sc::phi::Sector sector;
 
       test::TestObject* testObject(
-          new test::TestObject( sector, sc::phi::ObjectProperties( m_start_coordinate, m_speed_still, 0.0 ) ) );
+          new test::TestObject( sector, sc::phi::ObjectProperties( m_start_coordinate, m_speed_still, 0.0, 10, 1 ) ) );
       sc::phi::ObjectRef object( testObject );
 
       test::TestAccessory* testAccessory( new test::TestAccessory( 1 ) );

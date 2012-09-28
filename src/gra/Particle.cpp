@@ -182,7 +182,7 @@ sc::gra::Particle::Particle(
     Engine& graphicalEngine,
     const sc::phi::Coordinate& coordinate,
     const sc::phi::Coordinate& speed )
-  : sc::phi::Object( sector, { coordinate, speed, 0.0 } )
+  : sc::phi::Object( sector, { coordinate, speed, 0.0, 0, 0 } )
   , Graphical( graphicalEngine )
   , m_colourIndex( getRandomLessThan( blackBody.size() - 1 ) )
 {

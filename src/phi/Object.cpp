@@ -11,7 +11,7 @@
 sc::phi::Object::Object( Sector& sector )
   : Object(
       sector,
-      ObjectProperties( Coordinate( 100.0, 100.0 ), Coordinate( 0.0, 0.0 ) ) )
+      ObjectProperties( Coordinate( 100.0, 100.0 ), Coordinate( 0.0, 0.0 ), 0.0, 10, 1 ) )
 {
 }
 
@@ -22,7 +22,8 @@ sc::phi::Object::Object( Sector& sector, const ObjectProperties& properties )
                     ,properties.speed
                     ,properties.heading
                     ,0.0
-                    ,properties.radius )
+                    ,properties.radius
+                    ,properties.mass )
   , m_sector( sector )
   , m_accessories()
   , m_deleted( false )

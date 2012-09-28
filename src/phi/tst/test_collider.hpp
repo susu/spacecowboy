@@ -25,14 +25,15 @@ class ColliderTest : public CxxTest::TestSuite
       test::TestObjectFactory objectFactory( sector );
 
       test::TestObject* testObject_1(
-          objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still, 0.0 ) ) );
+          objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still, 0.0, 10, 1 ) ) );
 
       sc::phi::Model colliderModel(
           m_start_coordinate_2,
           m_speed_moving,
           0.0,
           0.0,
-          10.0 );
+          10.0,
+          1 );
 
       sc::phi::CollisionEvent collisionEvent(
           sc::phi::ObjectRef( nullptr ), colliderModel );
@@ -47,8 +48,8 @@ class ColliderTest : public CxxTest::TestSuite
       test::TestObjectFactory objectFactory( sector );
 
       test::TestObject* testObject_1(
-          objectFactory.createTestShip( sc::phi::ObjectProperties(  m_start_coordinate, m_speed_still, 0.0 ) ) );
-      objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate_2, m_speed_moving ) );
+          objectFactory.createTestShip( sc::phi::ObjectProperties(  m_start_coordinate, m_speed_still, 0.0, 10, 1 ) ) );
+      objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate_2, m_speed_moving, 0.0, 10, 1 ) );
 
       sector.tick();
       sector.tick();

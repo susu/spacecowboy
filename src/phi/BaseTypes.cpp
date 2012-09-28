@@ -122,16 +122,17 @@ sc::phi::length( const Coordinate& vector )
 
 
 sc::phi::ObjectProperties::ObjectProperties()
-  : ObjectProperties( { 0.0, 0.0 }, { 0.0, 0.0 }, 0.0 )
+  : ObjectProperties( { 0.0, 0.0 }, { 0.0, 0.0 }, 0.0, 0, 0 )
 {
 }
 
 
-sc::phi::ObjectProperties::ObjectProperties( const Coordinate& coord, const Coordinate& speed, const Angle& heading, const unsigned int radius )
+sc::phi::ObjectProperties::ObjectProperties( const Coordinate& coord, const Coordinate& speed, const Angle& heading, const unsigned int radius, const unsigned int mass )
   : coordinate( coord )
   , speed( speed )
   , heading( heading )
   , radius( radius )
+  , mass( mass )
 {
 }
 

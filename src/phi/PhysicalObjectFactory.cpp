@@ -24,7 +24,7 @@ sc::phi::ObjectRef
 sc::phi::PhysicalObjectFactory::createWithColliderAndEngine( const ObjectProperties& properties )
 {
   phi::ObjectRef object( createBasicObject( properties ) );
-  phi::AccessoryRef engine( new Engine( 0.5, 0.05 ) );
+  phi::AccessoryRef engine( new Engine( 5.0, 0.5 ) );
   object->addAccessory( engine );
 
   AccessoryRef collider( new Collider() );
@@ -55,7 +55,7 @@ sc::phi::ObjectRef
 sc::phi::PhysicalObjectFactory::createRocket( const ObjectProperties& properties )
 {
   phi::ObjectRef object( createBasicObject( properties ) );
-  phi::AccessoryRef engine( new Engine( 1.5, 0.15 ) );
+  phi::AccessoryRef engine( new Engine( 5.0, 0.5 ) );
   object->addAccessory( engine );
 
   AccessoryRef collider( new Collider() );

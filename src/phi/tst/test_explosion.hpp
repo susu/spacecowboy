@@ -23,12 +23,12 @@ class ExplosionTest : public CxxTest::TestSuite
       test::TestObjectFactory objectFactory( sector );
 
       test::TestObject* testObjectInRange(
-          objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate_in_range, m_speed_still, 0.0 ) ) );
+          objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate_in_range, m_speed_still, 0.0, 10, 1 ) ) );
 
       test::TestObject* testObjectOutOfRange(
-          objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate_out_of_range, m_speed_still, 0.0 ) ) );
+          objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate_out_of_range, m_speed_still, 0.0, 10, 1 ) ) );
 
-      objectFactory.createExplosion( sc::phi::ObjectProperties( m_start_explosion_coordinate, m_speed_still, 0.0, 100 ) );
+      objectFactory.createExplosion( sc::phi::ObjectProperties( m_start_explosion_coordinate, m_speed_still, 0.0, 100, 1 ) );
 
       sector.tick();
       sector.tick();

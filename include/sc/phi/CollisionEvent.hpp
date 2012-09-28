@@ -18,6 +18,7 @@ namespace sc
 
         Coordinate otherSpeed() const;
         Coordinate otherCoord() const;
+        unsigned int otherMass() const;
 
       private:
         ObjectRef m_collidingObject;

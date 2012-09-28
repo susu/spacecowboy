@@ -35,13 +35,14 @@ namespace sc
     struct ObjectProperties
     {
       ObjectProperties();
-      ObjectProperties( const Coordinate& coordinate, const Coordinate& speed, const Angle& heading = 0.0, unsigned int radius = 10 );
+      ObjectProperties( const Coordinate& coordinate, const Coordinate& speed, const Angle& heading, unsigned int radius, unsigned int mass );
 
       Coordinate coordinate;
       Coordinate speed;
       Angle heading;
 
       unsigned int radius;
+      unsigned int mass;
     };
 
     bool operator==( const Coordinate& left, const Coordinate& right );

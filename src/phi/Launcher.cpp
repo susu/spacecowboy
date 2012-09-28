@@ -9,6 +9,7 @@
 namespace
 {
   const int COOLDOWN( 30 );
+  const int ROCKET_SENSOR( 10 );
 }
 
 sc::phi::Launcher::Launcher( ObjectFactory& objectFactory )
@@ -38,6 +39,7 @@ sc::phi::Launcher::fire( sc::evt::Event& )
       { m_physicalModel->coordinate() + CoordFromPolar( m_physicalModel->heading(), 30.0 ),
         m_physicalModel->speed(),
         m_physicalModel->heading(),
+        ROCKET_SENSOR,
         1 } );
 }
 

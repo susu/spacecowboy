@@ -24,7 +24,7 @@ class RocketTest : public CxxTest::TestSuite
       test::TestObjectFactory objectFactory( sector );
 
       test::TestObject* testObject_1(
-          objectFactory.createTestRocket( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still ) ) );
+          objectFactory.createTestRocket( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still, 0.0, 1, 1 ) ) );
 
       sector.tick();
       sector.tick();
@@ -37,7 +37,7 @@ class RocketTest : public CxxTest::TestSuite
       sc::phi::Sector sector;
       test::TestObjectFactory objectFactory( sector );
       sc::phi::ObjectRef rocket(
-          objectFactory.createRocket( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still ) ) );
+          objectFactory.createRocket( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still, 0.0, 1, 1 ) ) );
 
       for ( int i( 0 ); i < 150; ++i )
       {
@@ -53,10 +53,9 @@ class RocketTest : public CxxTest::TestSuite
       sc::phi::Sector sector;
       test::TestObjectFactory objectFactory( sector );
       sc::phi::ObjectRef rocket(
-          objectFactory.createRocket( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still ) ) );
-      objectFactory.createShip( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still ) );
+          objectFactory.createRocket( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still, 0.0, 10, 1 ) ) );
+      objectFactory.createShip( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still, 0.0, 10, 10 ) );
 
-      sector.tick();
       sector.tick();
 
       objectFactory.assertExplosionCreated();

@@ -35,9 +35,16 @@ sc::phi::Coordinate
 sc::phi::Collider::calculateCollisionForce( CollisionEvent& event ) const
 {
   Coordinate distanceVector( event.otherCoord() - m_physicalModel->coordinate() );
+  Coordinate v2( project( event.otherSpeed(), distanceVector ) );
+  Coordinate v1( project( m_physicalModel->speed(), distanceVector ) );
 
-  return project( event.otherSpeed(), distanceVector ) -
-         project( m_physicalModel->speed(), distanceVector );
+  double m1( static_cast<double>( m_physicalModel->mass() ) );
+  double m2( static_cast<double>( event.otherMass() ) );
+  Coordinate newSpeed(
+      v1 * ( ( m1 - m2 ) / ( m1 + m2 ) ) +
+      v2 * ( ( 2 * m2 ) / ( m1 + m2 ) ) );
+
+  return ( newSpeed - v1 ) * m1;
 }
 
 void
@@ -49,7 +56,7 @@ sc::phi::Collider::explosion( sc::evt::Event& event )
     return;
   }
 
-  m_physicalModel->push( m_physicalModel->coordinate() - explosion.model().coordinate() );
+  m_physicalModel->push( ( m_physicalModel->coordinate() - explosion.model().coordinate() ) * 100.0 );
 
   evt::BinaryEvent damage( slot::EXPLOSION_DAMAGE );
   m_owningObject->dispatchEvent( damage );

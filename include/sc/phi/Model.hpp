@@ -9,11 +9,12 @@ namespace sc
     class Model
     {
       public:
-        Model( const Coordinate& m_coordinate,
-               const Coordinate& m_speed,
-               const Angle&      m_heading,
-               const Angle&      m_angularVelocity,
-               unsigned int      m_radius );
+        Model( const Coordinate& coordinate,
+               const Coordinate& speed,
+               const Angle&      heading,
+               const Angle&      angularVelocity,
+               unsigned int      radius,
+               unsigned int      mass );
 
         void timeElapse( const Ratio& timeFrameRatio );
         void spin( const double& force );
@@ -25,6 +26,7 @@ namespace sc
         Angle angularVelocity() const { return m_angularVelocity; }
 
         unsigned int radius() const { return m_radius; }
+        unsigned int mass() const { return m_mass; }
       private:
         void updateWithModifiers();
 
@@ -37,6 +39,7 @@ namespace sc
         Angle      m_angularVelocityModifier;
 
         unsigned int m_radius;
+        unsigned int m_mass;
     };
 
     bool collides( const Model& left, const Model& right );

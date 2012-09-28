@@ -30,3 +30,10 @@ sc::phi::CollisionEvent::otherCoord() const
   return m_modelOfCollider.coordinate();
 }
 
+
+unsigned int
+sc::phi::CollisionEvent::otherMass() const
+{
+  return m_modelOfCollider.mass();
+}
+

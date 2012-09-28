@@ -18,11 +18,11 @@ class SectorTest : public CxxTest::TestSuite
       sc::phi::Sector sector;
 
       test::TestObject* testObject1(
-          new test::TestObject( sector, sc::phi::ObjectProperties( m_start_coordinate, m_speed_moving ) ) );
+          new test::TestObject( sector, sc::phi::ObjectProperties( m_start_coordinate, m_speed_moving, 0.0, 1, 1 ) ) );
       sc::phi::ObjectRef object1( testObject1 );
 
       test::TestObject* testObject2(
-          new test::TestObject( sector, sc::phi::ObjectProperties( m_start_coordinate, m_speed_moving ) ) );
+          new test::TestObject( sector, sc::phi::ObjectProperties( m_start_coordinate, m_speed_moving, 0.0, 1, 1 ) ) );
       sc::phi::ObjectRef object2( testObject2 );
 
       sector.addObject( object1 );
@@ -41,7 +41,7 @@ class SectorTest : public CxxTest::TestSuite
     {
       sc::phi::Sector sector;
       test::TestObject* testObject1(
-          new test::TestObject( sector, sc::phi::ObjectProperties( m_start_coordinate, m_speed_moving ) ) );
+          new test::TestObject( sector, sc::phi::ObjectProperties( m_start_coordinate, m_speed_moving, 0.0, 1, 1 ) ) );
       sc::phi::ObjectRef object1( testObject1 );
       sector.addObject( object1 );
       testObject1->deleteObject();

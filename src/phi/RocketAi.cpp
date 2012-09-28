@@ -5,11 +5,18 @@
 #include <sc/phi/EventSlots.hpp>
 #include <sc/evt/Event.hpp>
 
+
+namespace
+{
+  unsigned int LIFETIME( 100 );
+  unsigned int EXPLOSION_RADIUS( 50 );
+}
+
 sc::phi::RocketAi::RocketAi( Object* rocket, ObjectFactory& objectFactory )
   : Accessory()
   , m_rocket( rocket )
   , m_objectFactory( objectFactory )
-  , m_ttl( 100 )
+  , m_ttl( LIFETIME )
 {
 }
 
@@ -51,7 +58,8 @@ sc::phi::RocketAi::explode()
       m_physicalModel->coordinate(),
       m_physicalModel->speed(),
       0.0,
-      50 } );
+      EXPLOSION_RADIUS,
+      1 } );
   m_rocket->deleteObject();
 }
 

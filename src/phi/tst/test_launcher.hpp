@@ -22,7 +22,7 @@ class LauncherTest : public CxxTest::TestSuite
       test::TestObjectFactory objectFactory( sector );
 
       sc::phi::ObjectRef ship(
-          objectFactory.createShip( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still ) ) );
+          objectFactory.createShip( sc::phi::ObjectProperties( m_start_coordinate, m_speed_still, 0.0, 10, 1 ) ) );
 
       sc::evt::BinaryEvent fire( sc::phi::slot::FIRE );
       ship->dispatchEvent( fire );
@@ -39,7 +39,7 @@ class LauncherTest : public CxxTest::TestSuite
       test::TestObjectFactory objectFactory( sector );
 
       sc::phi::ObjectRef ship(
-          objectFactory.createShip( sc::phi::ObjectProperties( m_start_coordinate, m_speed_moving ) ) );
+          objectFactory.createShip( sc::phi::ObjectProperties( m_start_coordinate, m_speed_moving, 0.0, 10, 1 ) ) );
 
       sc::evt::BinaryEvent fire( sc::phi::slot::FIRE );
       ship->dispatchEvent( fire );

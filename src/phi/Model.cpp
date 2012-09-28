@@ -6,7 +6,8 @@ sc::phi::Model::Model(
     const Coordinate& speed,
     const Angle&      heading,
     const Angle&      angularVelocity,
-    unsigned int      radius )
+    unsigned int      radius,
+    unsigned int      mass )
   : m_coordinate( coordinate  )
   , m_speed( speed )
   , m_heading( heading )
@@ -14,6 +15,7 @@ sc::phi::Model::Model(
   , m_speedModifier( 0.0, 0.0 )
   , m_angularVelocityModifier( 0.0 )
   , m_radius( radius )
+  , m_mass( mass )
 {
 }
 
@@ -42,14 +44,14 @@ sc::phi::Model::updateWithModifiers()
 void
 sc::phi::Model::spin( const double& force )
 {
-  m_angularVelocityModifier+=force;
+  m_angularVelocityModifier+=force / m_mass;
 }
 
 
 void
 sc::phi::Model::push( const Coordinate& force )
 {
-  m_speedModifier+=force;
+  m_speedModifier+=force * ( 1.0 / m_mass );
 }
 
 

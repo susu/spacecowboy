@@ -18,7 +18,8 @@ class ModelTest : public CxxTest::TestSuite
           m_startSpeed,
           0.0,
           m_startAngularVelocity,
-          10.0 ) );
+          10.0,
+          1.0 ) );
     }
 
   public:
@@ -65,6 +66,34 @@ class ModelTest : public CxxTest::TestSuite
     }
 
 
+    void test_objects_with_greater_mass_moves_and_rotates_slower_with_same_force()
+    {
+      sc::phi::Coordinate force( 1.0, 1.0 );
+      sc::phi::Angle spinningForce( 1.0 );
+      m_model->spin( spinningForce );
+      m_model->push( force );
+      m_model->timeElapse( m_stepRatio );
+      sc::phi::Coordinate speed_of_smaller_object( m_model->speed() );
+      sc::phi::Angle angularVelocity_of_smaller_object( m_model->angularVelocity() );
+
+      sc::phi::Model biggerModel(
+          sc::phi::Coordinate( 0.0, 0.0 ),
+          m_startSpeed,
+          0.0,
+          m_startAngularVelocity,
+          10.0,
+          10.0 );
+      biggerModel.spin( spinningForce );
+      biggerModel.push( force );
+      biggerModel.timeElapse( m_stepRatio );
+      sc::phi::Coordinate speed_of_bigger_object( biggerModel.speed() );
+      sc::phi::Angle angularVelocity_of_bigger_object( biggerModel.angularVelocity() );
+
+      TS_ASSERT( angularVelocity_of_smaller_object > angularVelocity_of_bigger_object );
+      TS_ASSERT( sc::phi::length( speed_of_smaller_object ) > sc::phi::length( speed_of_bigger_object ) );
+    }
+
+
     void test_models_collide_only_if_circles_overlap()
     {
       {
@@ -73,7 +102,8 @@ class ModelTest : public CxxTest::TestSuite
             sc::phi::Coordinate( 0.0, 0.0 ),
             0.0,
             0.0,
-            10.0 );
+            10.0,
+            1 );
 
         TS_ASSERT( !collides( other, *m_model.get() ) );
       }
@@ -84,7 +114,8 @@ class ModelTest : public CxxTest::TestSuite
             sc::phi::Coordinate( 0.0, 0.0 ),
             0.0,
             0.0,
-            10.0 );
+            10.0,
+            1 );
         TS_ASSERT( collides( other, *m_model.get() ) );
       }
     }
