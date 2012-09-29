@@ -36,35 +36,7 @@ class ShipStructureTest : public CxxTest::TestSuite
 
       sc::phi::CollisionEvent collisionEvent( sc::phi::ObjectRef( nullptr ), colliderModel );
 
-      for ( int i( 0 ); i < 10; ++i )
-      {
-        testObject_1->dispatchEvent( collisionEvent );
-      }
-
-      TS_ASSERT( testObject_1->isDeleted() );
-    }
-
-
-    void test_ship_structure_should_delete_object_if_explodes_too_much()
-    {
-      sc::phi::Sector sector;
-      test::TestObjectFactory objectFactory( sector );
-
-      test::TestObject* testObject_1(
-          objectFactory.createTestShip( sc::phi::ObjectProperties( m_start_coordinate, m_speed_moving, 0.0, 10, 1 ) ) );
-
-      sc::phi::Model colliderModel(
-          m_start_coordinate_2,
-          m_speed_moving,
-          0.0,
-          0.0,
-          10.0,
-          1 );
-
-
-      sc::phi::CollisionEvent collisionEvent( sc::phi::ObjectRef( nullptr ), colliderModel );
-
-      for ( int i( 0 ); i < 10; ++i )
+      for ( int i( 0 ); i < 100; ++i )
       {
         testObject_1->dispatchEvent( collisionEvent );
       }

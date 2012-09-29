@@ -22,7 +22,7 @@ sc::phi::ShipStructure::~ShipStructure()
 void
 sc::phi::ShipStructure::collisionDamage( sc::evt::Event& )
 {
-  m_integrity-=10;
+  m_integrity-=3;
   handleShipDamaged();
 }
 
@@ -30,7 +30,7 @@ sc::phi::ShipStructure::collisionDamage( sc::evt::Event& )
 void
 sc::phi::ShipStructure::explosionDamage( sc::evt::Event& )
 {
-  m_integrity-=30;
+  m_integrity-=50;
   handleShipDamaged();
 }
 
