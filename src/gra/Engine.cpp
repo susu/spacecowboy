@@ -68,9 +68,55 @@ sc::gra::Engine::drawShip(
 
 
 void
+sc::gra::Engine::drawCircle(
+    const sc::phi::Coordinate& center,
+    unsigned int rad, unsigned int colour )
+{
+  unsigned int radius( m_focus.mapSize( rad ) );
+  sc::phi::Coordinate mappedCenter( m_focus.mapCoordinate( center ) );
+  unsigned int x0( static_cast< unsigned int >( mappedCenter.x ) );
+  unsigned int y0( static_cast< unsigned int >( mappedCenter.y ) );
+
+  unsigned int pixelSize( m_focus.mapSize( 5 ) );
+
+  int f( 1 - radius );
+  int ddF_x( 1 );
+  int ddF_y( -2 * radius );
+  int x( 0 );
+  int y( radius );
+
+  drawRawRectangle( x0, y0 + radius, pixelSize, colour );
+  drawRawRectangle( x0, y0 - radius, pixelSize, colour );
+  drawRawRectangle( x0 + radius, y0, pixelSize, colour );
+  drawRawRectangle( x0 - radius, y0, pixelSize, colour );
+
+  while( x < y )
+  {
+    if( f >= 0 )
+    {
+      y--;
+      ddF_y += 2;
+      f += ddF_y;
+    }
+    x++;
+    ddF_x += 2;
+    f += ddF_x;
+    drawRawRectangle( x0 + x, y0 + y, pixelSize, colour );
+    drawRawRectangle( x0 - x, y0 + y, pixelSize, colour );
+    drawRawRectangle( x0 + x, y0 - y, pixelSize, colour );
+    drawRawRectangle( x0 - x, y0 - y, pixelSize, colour );
+    drawRawRectangle( x0 + y, y0 + x, pixelSize, colour );
+    drawRawRectangle( x0 - y, y0 + x, pixelSize, colour );
+    drawRawRectangle( x0 + y, y0 - x, pixelSize, colour );
+    drawRawRectangle( x0 - y, y0 - x, pixelSize, colour );
+  }
+}
+
+
+void
 sc::gra::Engine::drawPoint(
   const sc::phi::Coordinate& center,
-  int size, unsigned int colour )
+  unsigned int size, unsigned int colour )
 {
   sc::phi::Coordinate mappedCenter( m_focus.mapCoordinate( center ) );
   drawRawRectangle( mappedCenter.x, mappedCenter.y, m_focus.mapSize( size ), colour );

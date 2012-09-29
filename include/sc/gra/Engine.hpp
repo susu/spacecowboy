@@ -30,7 +30,11 @@ namespace sc
 
         virtual void drawPoint(
             const sc::phi::Coordinate& center,
-            int size, unsigned int colour );
+            unsigned int size, unsigned int colour );
+
+        virtual void drawCircle(
+            const sc::phi::Coordinate& center,
+            unsigned int radius, unsigned int colour );
 
         virtual void drawRawRectangle(
             unsigned int x,
