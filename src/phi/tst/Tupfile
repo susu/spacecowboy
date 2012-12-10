@@ -6,5 +6,5 @@ EXTRADEP+=$(LD_PATH)/libscphi.so $(LD_PATH)/libscevt.so
 : test_*.hpp |> !generate_test |> testFile.cpp
 : foreach *.cpp |> !cpp |>
 : testFile.o |> !link_test |>
-: testFile |> !run_test |>
+: |> !run_test |>
 
