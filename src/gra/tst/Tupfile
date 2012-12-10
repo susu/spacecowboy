@@ -1,10 +1,10 @@
 include_rules
 
 LIBS+=-lscphi -lscevt -lscgra
-EXTRADEP+=../libscgra.so ../../phi/libscphi.so ../../evt/libscevt.so
+EXTRADEP+=$(LD_PATH)/libscgra.so $(LD_PATH)/libscphi.so $(LD_PATH)/libscevt.so
 
 : test_*.hpp |> !generate_test |> testFile.cpp
 : foreach *.cpp |> !cpp |>
 : testFile.o |> !link_test |>
-: |> !run_test |>
+: testFile |> !run_test |>
 

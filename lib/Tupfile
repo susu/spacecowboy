@@ -1,0 +1,5 @@
+include_rules
+
+: $(PHOME)/src/evt/*.o |> !lib |> libscevt.so
+: $(PHOME)/src/phi/*.o |> !lib |> libscphi.so
+: $(PHOME)/src/gra/*.o |> !lib |> libscgra.so

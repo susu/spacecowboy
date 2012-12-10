@@ -1,10 +1,10 @@
 include_rules
 
 LIBS+=-lscevt
-EXTRADEP+=../libscevt.so
+EXTRADEP+=$(LD_PATH)/libscevt.so
 
 : test_*.hpp |> !generate_test |> testFile.cpp
 : foreach *.cpp |> !cpp |>
 : testFile.o |> !link_test |>
-: |> !run_test |>
+: testFile |> !run_test |>
 
